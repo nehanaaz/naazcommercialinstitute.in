@@ -1,0 +1,172 @@
+---
+const siteUrl = 'https://naazcommercialinstitute.in';
+const title = 'Naaz Commercial Institute — Vocational Training & Community Development';
+const description = 'Naaz Commercial Institute (NGO) provides vocational training, skill development, and community programs to empower individuals and create sustainable livelihoods.';
+const keywords = 'Naaz Commercial Institute, NGO, vocational training, community development, skill development, training institute';
+const logo = `${siteUrl}/logo.png`;
+const twitterHandle = '@NaazCommercial';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<meta name="robots" content="index, follow" />
+
+		<!-- Canonical -->
+		<link rel="canonical" href={siteUrl} />
+
+		<!-- Favicon / icons (add actual files in /public if available) -->
+		<link rel="icon" href="/favicon.ico" />
+
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Naaz Commercial Institute" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={siteUrl} />
+		<meta property="og:image" content={logo} />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content={twitterHandle} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={logo} />
+
+		<!-- Accessibility: minimal inline style for skip link (project CSS should override) -->
+		<style>
+			.skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+			.skip-link:focus{position:static;left:auto;width:auto;height:auto;background:#000;color:#fff;padding:0.5rem;z-index:1000}
+			.visually-hidden{position:absolute !important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+		</style>
+
+		<!-- Structured data: Organization + WebSite -->
+		<script type="application/ld+json">
+			{JSON.stringify({
+				"@context": "https://schema.org",
+				"@type": "NGO",
+				"name": "Naaz Commercial Institute",
+				"url": siteUrl,
+				"logo": logo,
+				"description": description,
+				"sameAs": [
+					// add social links as available
+				]
+			})}
+		</script>
+	</head>
+
+	<body>
+		<a class="skip-link" href="#main-content">Skip to content</a>
+
+		<header role="banner" aria-label="Primary">
+			<div class="container" style="padding:1rem;display:flex;align-items:center;justify-content:space-between">
+				<div class="brand" style="display:flex;align-items:center;gap:0.75rem">
+					<a href="/" aria-label="Naaz Commercial Institute home">
+						<img src="/logo.png" alt="Naaz Commercial Institute logo" width="72" height="72" style="max-height:72px;object-fit:contain" />
+					</a>
+					<div>
+						<h1 style="margin:0;font-size:1.25rem">Naaz Commercial Institute</h1>
+						<p style="margin:0;font-size:0.875rem;color:#444">Vocational training · Community development · Empowerment</p>
+					</div>
+				</div>
+
+				<nav role="navigation" aria-label="Primary navigation">
+					<ul style="list-style:none;display:flex;gap:1rem;margin:0;padding:0">
+						<li><a href="#about">About</a></li>
+						<li><a href="#programs">Programs</a></li>
+						<li><a href="#impact">Impact</a></li>
+						<li><a href="#get-involved">Get Involved</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<main id="main-content" role="main">
+			<section aria-labelledby="hero-heading" style="padding:2rem 1rem;background:#f7f7f9">
+				<div class="container" style="max-width:1000px;margin:0 auto">
+					<h2 id="hero-heading">Empowering communities through skills, training and opportunity</h2>
+					<p style="font-size:1.05rem">At Naaz Commercial Institute we deliver industry-aligned vocational courses, community outreach, and livelihood programs designed to help individuals build sustainable careers.</p>
+					<p>
+						<a href="#programs" class="cta" style="display:inline-block;margin-top:1rem;padding:0.5rem 1rem;background:#0066cc;color:#fff;border-radius:4px;text-decoration:none">Explore Programs</a>
+						<a href="#get-involved" style="margin-left:0.75rem">Volunteer / Donate</a>
+					</p>
+				</div>
+			</section>
+
+			<section id="about" aria-labelledby="about-heading" style="padding:2rem 1rem">
+				<div class="container" style="max-width:1000px;margin:0 auto">
+					<h3 id="about-heading">About Naaz Commercial Institute</h3>
+					<p>Naaz Commercial Institute is a registered non-profit organization providing skill development, training and mentoring to underserved communities. We partner with local employers and government programs to align our courses with real job opportunities.</p>
+
+					<h4>Mission</h4>
+					<p>To equip individuals with practical skills, confidence and pathways to sustainable employment.</p>
+
+					<h4>Vision</h4>
+					<p>A resilient community where every person has access to quality vocational training and opportunities to thrive.</p>
+				</div>
+			</section>
+
+			<section id="programs" aria-labelledby="programs-heading" style="padding:2rem 1rem;background:#fff">
+				<div class="container" style="max-width:1000px;margin:0 auto">
+					<h3 id="programs-heading">Programs & Training</h3>
+					<p>We offer short-term certification courses and long-term training across multiple trades. Each program includes practical workshops, placement support and follow-up mentoring.</p>
+
+					<ul>
+						<li><strong>Skill Development Workshops</strong> — Digital literacy, tailoring, electrical basics, hospitality skills.</li>
+						<li><strong>Entrepreneurship</strong> — Small business training, micro-enterprise support.</li>
+						<li><strong>Placement Support</strong> — CV building, interview prep, employer connections.</li>
+					</ul>
+				</div>
+			</section>
+
+			<section id="impact" aria-labelledby="impact-heading" style="padding:2rem 1rem">
+				<div class="container" style="max-width:1000px;margin:0 auto">
+					<h3 id="impact-heading">Impact & Stories</h3>
+					<p>Since our founding, we've trained hundreds of learners and helped many secure stable livelihoods. We measure impact through placement rates, income improvement and participant feedback.</p>
+
+					<a href="#contact" style="text-decoration:underline">Read our annual report</a>
+				</div>
+			</section>
+
+			<section id="get-involved" aria-labelledby="getinvolved-heading" style="padding:2rem 1rem;background:#fff">
+				<div class="container" style="max-width:1000px;margin:0 auto">
+					<h3 id="getinvolved-heading">Get involved</h3>
+					<p>Support our work by volunteering, partnering, or donating. Contributions help us expand training and reach more learners.</p>
+
+					<ul>
+						<li><a href="#contact">Volunteer with us</a></li>
+						<li><a href="#contact">Partner as an employer</a></li>
+						<li><a href="#contact">Make a donation</a></li>
+					</ul>
+				</div>
+			</section>
+
+			<section id="contact" aria-labelledby="contact-heading" style="padding:2rem 1rem">
+				<div class="container" style="max-width:1000px;margin:0 auto">
+					<h3 id="contact-heading">Contact</h3>
+					<address>
+						<p>Naaz Commercial Institute<br />123 Community Lane<br />City, State ZIP</p>
+						<p>Phone: <a href="tel:+911234567890">+91 12345 67890</a><br />Email: <a href="mailto:info@naazcommercialinstitute.in">info@naazcommercialinstitute.in</a></p>
+					</address>
+				</div>
+			</section>
+		</main>
+
+		<footer role="contentinfo" style="padding:1rem;background:#f1f1f1">
+			<div class="container" style="max-width:1000px;margin:0 auto;display:flex;justify-content:space-between;align-items:center">
+				<p style="margin:0">© {new Date().getFullYear()} Naaz Commercial Institute. All rights reserved.</p>
+				<p style="margin:0"><a href="/privacy">Privacy</a> · <a href="/accessibility">Accessibility</a></p>
+			</div>
+		</footer>
+
+	</body>
+</html>
