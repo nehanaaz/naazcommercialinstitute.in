@@ -26,18 +26,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js (with pnpm cache)
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'pnpm'
-          cache-dependency-path: website/pnpm-lock.yaml
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
       - name: Verify dist exists
         run: |
           echo "Listing dist directory contents:"
