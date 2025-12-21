@@ -29,6 +29,9 @@ jobs:
       - name: Verify dist exists
         run: ls -la ./dist
 
+      - name: Copy CNAME file
+        run: cp CNAME ./dist/CNAME
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
