@@ -1,24 +1,24 @@
-name: Build and deploy Astro site to GitHub Pages (custom)
+name: Build and deploy Astro site to GitHub Pages
 
 on:
   push:
     branches: [ main ]
-    # optional: deploy on tag pushes like v1.2.3
     tags:
       - 'v*.*.*'
-  workflow_dispatch: {}
+  workflow_dispatch:
 
 concurrency:
   group: pages-deploy
   cancel-in-progress: true
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
 
     steps:
       - name: Checkout repository
@@ -26,16 +26,19 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Verify dist exists
-        run: |
-          echo "Listing dist directory contents:"
-          ls -la ./dist || (echo "dist not found" && exit 1)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
-      - name: Deploy to gh-pages branch (avoid deprecated upload-artifact)
+      - name: Verify dist exists
+        run: ls -la ./dist
+
+      - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
-          # keep the history small by not preserving commits from dist
           allow_empty_commit: false
