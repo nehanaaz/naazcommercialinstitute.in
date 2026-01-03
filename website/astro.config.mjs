@@ -16,7 +16,7 @@ export default defineConfig({
   output: 'static',
   outDir: '../dist',
   site: SITE,
-  trailingSlash: "always",
+  trailingSlash: "ignore",
   integrations: [react(), sitemap(), partytown()],
 
   vite: {

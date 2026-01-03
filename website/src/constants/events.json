@@ -1,0 +1,56 @@
+[
+  {
+    "year": "2005",
+    "title": "Swachhta Abhiyan",
+    "description": "Started in 2005, the Swachhta Abhiyan aimed to promote cleanliness, hygiene, and healthy living in underserved rural communities. Along with sanitation awareness, community support helped establish the organization’s first computer lab, introducing digital learning as a tool for growth and opening new opportunities for education and empowerment.",
+    "images": ["", "", "", ""]
+  },
+  {
+    "year": "2006",
+    "title": "Water & Sanitation",
+    "description": "Initiated in 2006, the Water & Sanitation program addressed the urgent need for clean water and proper sanitation in rural and backward areas. By focusing on awareness, community participation, and basic infrastructure, the program worked to improve health outcomes, prevent disease, and enhance the dignity and quality of life of vulnerable families.",
+    "images": ["", "", "", ""]
+  },
+  {
+    "year": "2014",
+    "title": "Urdu Diploma Course",
+    "description": "Introduced in 2014, the Urdu Diploma Course created educational opportunities for students from minority and rural communities. By promoting learning in the mother tongue, the program strengthened academic confidence, preserved cultural identity, and supported pathways to employment and further education.",
+    "images": ["", "", "", ""]
+  },
+  {
+    "year": "2020",
+    "title": "Hunger & Poverty Elimination",
+    "description": "Launched in 2020, the Hunger & Poverty Elimination Program responded to the growing needs of poor and vulnerable families in rural and backward regions. Through the regular distribution of dry rations, the organization has supported more than 1,000 families, helping fight hunger, ensure food security, and restore hope and dignity during times of hardship.",
+    "images": ["", "", "", ""]
+  },
+  {
+    "year": "2021",
+    "title": "Health & Education",
+    "description": "Started in 2021, the Health & Education program focuses on children under five years of age from underprivileged communities. By providing pre-nutrition support and early education, the initiative aims to build a strong foundation for healthy growth and learning, recognizing early care as a key step in breaking the cycle of poverty.",
+    "images": ["", "", "", ""]
+  },
+  {
+    "year": "2021",
+    "title": "Mobility Aid Program",
+    "description": "Initiated in 2021, the Mobility Aid Program supports individuals with physical disabilities by providing tricycles and wheelchairs to those in need. The program helps restore independence and livelihood opportunities, particularly in rural areas where mobility is essential for accessing work, education, and social participation.",
+    "images": ["", "", "", ""]
+  },
+  {
+    "year": "2022",
+    "title": "Health Awareness Program",
+    "description": "Launched in 2022, the Health Awareness Program focuses on improving the health and well-being of women and children in underserved communities. With support from Vitamin Angel, the organization conducts health camps and provides micronutrient supplementation, helping address malnutrition and promote preventive healthcare awareness.",
+    "images": ["", "", "", ""]
+  },
+  {
+    "year": "1990",
+    "title": "Vocational Training",
+    "description": "In 1990, the organization took its first step toward empowering marginalized communities by launching vocational training programs for rural and economically disadvantaged individuals. Beginning with 100 students, the initiative focused on practical skills such as shorthand, typing in English, Hindi, and Urdu, stitching and tailoring, and basic pre-school education. Designed especially for uneducated women, the program helped participants gain confidence, independence, and a pathway toward self-reliance and dignity through skill-based learning.",
+    "images": ["", "", "", ""]
+  },
+  {
+    "year": "2003",
+    "title": "TRYSEM Yojna",
+    "description": "Launched in 2003, the TRYSEM Yojna strengthened the organization’s commitment to rural youth and women by expanding vocational training opportunities. The program focused on equipping participants with employable skills aligned with local needs, enabling individuals from poverty-affected backgrounds to build sustainable livelihoods and move toward financial stability.",
+    "images": ["", "", "", ""]
+  }
+]

@@ -2,7 +2,7 @@
 
 import {Image} from "@/components/ui/image"
 import { useState, useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { AnimatePresence, motion, useInView } from "framer-motion"
 import {
   Drawer,
   DrawerContent,
@@ -12,45 +12,14 @@ import {
   DrawerClose,
 } from "@/components/ui/drawer"
 import { Button } from "@/components/ui/button"
-import { X, ArrowRight } from "lucide-react"
+import { X, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
+import events from "@/constants/events.json"
+import { Dialog, DialogContent, DialogClose, DialogTitle } from "@/components/ui/dialog"
 
-const achievements = [
-  {
-    year: "2015",
-    title: "The Beginning",
-    description: "Started with 12 students in a borrowed classroom, teaching basic accounting and typing skills.",
-    image: "/small-rural-classroom-students-learning-bihar-indi.jpg",
-  },
-  {
-    year: "2017",
-    title: "First Computer Lab",
-    description: "Community donations helped us establish our first computer lab with 10 systems.",
-    image: "/computer-lab-rural-india-students-learning.jpg",
-  },
-  {
-    year: "2019",
-    title: "100th Graduate",
-    description: "Celebrated our 100th graduate. 78 of them secured jobs within the first year.",
-    image: "/graduation-ceremony-rural-india-students-celebrati.jpg",
-  },
-  {
-    year: "2021",
-    title: "Women's Program",
-    description: "Launched evening classes enabling 150+ women to gain financial independence.",
-    image: "/indian-women-learning-computers-empowerment-classr.jpg",
-  },
-  {
-    year: "2023",
-    title: "Community Hub",
-    description: "Expanded to offer free weekend workshops reaching 200+ community members.",
-    image: "/community-workshop-business-training-rural-bihar.jpg",
-  },
-]
-
-const marqueeItems = [...achievements, ...achievements]
+const marqueeItems = [...events, ...events]
 
 export default function HomeGallery() {
-  const [selected, setSelected] = useState<(typeof achievements)[0] | null>(null)
+  const [selected, setSelected] = useState<(typeof events)[0] | null>(null)
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
@@ -64,7 +33,7 @@ export default function HomeGallery() {
           className="flex flex-col sm:flex-row sm:items-end justify-between gap-4"
         >
           <div>
-            <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">Our Journey</p>
+            <p className="text-xs font-medium text-primary uppercase tracking-[0.2em] mb-3">Our Journey</p>
             <h2 id="gallery-heading" className="font-serif text-3xl sm:text-4xl text-foreground tracking-tight">
               Milestones along the way
             </h2>
@@ -95,6 +64,7 @@ export default function HomeGallery() {
             >
               <article className="relative aspect-[4/3] overflow-hidden rounded-xl bg-muted">
                 <Image
+                  src={item.images[0]}
                   alt={item.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -111,7 +81,7 @@ export default function HomeGallery() {
 
       {/* Drawer */}
       <Drawer open={!!selected} onOpenChange={() => setSelected(null)}>
-        <DrawerContent className="max-h-[85vh]">
+        <DrawerContent>
           <div className="mx-auto w-full max-w-lg">
             <DrawerHeader className="relative text-left pt-6">
               <DrawerClose className="absolute right-4 top-4 p-2 rounded-full hover:bg-muted transition-colors">
@@ -122,11 +92,69 @@ export default function HomeGallery() {
               <DrawerTitle className="font-serif text-2xl">{selected?.title}</DrawerTitle>
             </DrawerHeader>
             <div className="px-4 pb-8">
-              <div className="aspect-video rounded-lg overflow-hidden mb-5 bg-muted">
-                <Image
-                  alt={selected?.title || ""}
-                  className="w-full h-full object-cover"
-                />
+              <div className="mb-5">
+                {selected?.images && selected.images.length === 1 && (
+                  <button className="w-full aspect-video rounded-lg overflow-hidden bg-muted hover:opacity-95 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                    <Image
+                      src={selected.images[0] || "/placeholder.svg"}
+                      alt={selected?.title || ""}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                )}
+
+                {selected?.images && selected.images.length === 2 && (
+                  <div className="grid grid-cols-2 gap-2">
+                    {selected.images.map((img, idx) => (
+                      <button key={idx} className="aspect-[3/4] rounded-lg overflow-hidden bg-muted hover:opacity-95 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                        <Image
+                          src={img || "/placeholder.svg"}
+                          alt={`${selected?.title} ${idx + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {selected?.images && selected.images.length >= 3 && (
+                  <div className="grid grid-cols-2 gap-2 h-[400px]">
+                    <button
+                      className="row-span-2 rounded-lg overflow-hidden bg-muted hover:opacity-95 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      <Image
+                        src={selected.images[0] || "/placeholder.svg"}
+                        alt={`${selected?.title} 1`}
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                    <button
+                      className="rounded-lg overflow-hidden bg-muted hover:opacity-95 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      <Image
+                        src={selected.images[1] || "/placeholder.svg"}
+                        alt={`${selected?.title} 2`}
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                    <button
+                      className="relative rounded-lg overflow-hidden bg-muted hover:opacity-95 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      <Image
+                        src={selected.images[2] || "/placeholder.svg"}
+                        alt={`${selected?.title} 3`}
+                        className="w-full h-full object-cover"
+                      />
+                      {selected.images.length > 3 && (
+                        <div className="absolute inset-0 bg-foreground/10 flex items-center justify-center backdrop-blur-sm">
+                          <span className="text-background text-2xl font-medium">
+                            +{selected.images.length - 3} more
+                          </span>
+                        </div>
+                      )}
+                    </button>
+                  </div>
+                )}
               </div>
               <DrawerDescription className="text-base text-muted-foreground leading-relaxed">
                 {selected?.description}

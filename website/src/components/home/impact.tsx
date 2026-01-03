@@ -70,14 +70,14 @@ export default function HomeImpact() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mx-auto text-center mb-20"
         >
-          <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">Our Impact</p>
+          <p className="text-xs font-medium text-primary uppercase tracking-[0.2em] mb-3">Our Impact</p>
           <h2
             id="impact-heading"
-            className="font-serif text-4xl sm:text-5xl lg:text-6xl text-foreground leading-[1.1] tracking-tight mb-6"
+            className="font-serif text-3xl sm:text-4xl md:text-5xl text-foreground tracking-tight mb-4"
           >
             Creating ripples of change
           </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Every number represents a story of hope, transformation, and a family breaking free from the cycle of
             poverty.
           </p>

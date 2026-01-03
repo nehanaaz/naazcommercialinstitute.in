@@ -3,7 +3,8 @@
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { BookOpen, Users, Sparkles, Target, Heart, TrendingUp } from "lucide-react"
-import { Image } from "@/components/ui/image"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import donors from "@/constants/donors.json"
 
 const pillars = [
   {
@@ -47,18 +48,18 @@ const pillars = [
 const values = [
   {
     number: "01",
-    title: "Quality Education",
-    description: "Industry-relevant curriculum in accounting, computers, and business skills.",
+    title: "Hope Through Education",
+    description: "Providing quality education and life skills to empower rural youth.",
   },
   {
     number: "02",
-    title: "Community First",
-    description: "Programs designed with families to ensure relevance and lasting impact.",
+    title: "Health & Awareness",
+    description: "Promoting health, awareness, and well-being in underserved communities.",
   },
   {
     number: "03",
-    title: "Women Empowerment",
-    description: "Evening classes enabling women to gain financial independence.",
+    title: "Women & Youth Empowerment",
+    description: "Empowering women and youth with confidence, skills, and independence.",
   },
 ]
 
@@ -84,7 +85,7 @@ export default function HomeMission() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">Our Purpose</p>
+            <p className="text-xs font-medium text-primary uppercase tracking-[0.2em] mb-3">Our Purpose</p>
             <h2
               id="mission-heading"
               className="font-serif text-3xl sm:text-4xl lg:text-5xl text-foreground leading-[1.15] tracking-tight"
@@ -96,13 +97,12 @@ export default function HomeMission() {
               through skill-based learning that transforms lives, families, and communities.
             </p>
             <div className="flex items-center gap-4 pt-4 border-t border-border">
-              <div className="flex -space-x-3">
-                {[1, 2, 3, 4].map((i) => (
-                  <Image
-                    key={i}
-                    alt=""
-                    className="w-10 h-10 rounded-full border-2 border-background object-cover"
-                  />
+              <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
+                {donors.donors.slice(0, 4).map((i, index) => (
+                  <Avatar key={`donor-${index}`}>
+                    <AvatarImage src={i.avatar || "/placeholder.svg"} alt={i.name} />
+                    <AvatarFallback>{i.fallback}</AvatarFallback>
+                  </Avatar>
                 ))}
               </div>
               <p className="text-sm text-muted-foreground">

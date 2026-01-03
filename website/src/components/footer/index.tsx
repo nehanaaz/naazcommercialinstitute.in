@@ -13,7 +13,7 @@ export default function Footer() {
               <img src={siteConfig.logo || "/placeholder.svg"} alt="" width={40} height={40} className="rounded-xl" />
               <div>
                 <p className="text-base font-medium text-foreground tracking-tight">{siteConfig.shortName}</p>
-                <p className="text-xs text-muted-foreground tracking-wide">Empowering communities</p>
+                <p className="text-xs text-muted-foreground tracking-wide">{siteConfig.tagline}</p>
               </div>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
