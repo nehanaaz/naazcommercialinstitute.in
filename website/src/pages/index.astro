@@ -1,10 +1,18 @@
 ---
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import HomeHero from "@/components/home/hero";
+import HomeMission from "@/components/home/mission";
+import HomeImpact from "@/components/home/impact";
+import HomeGallery from "@/components/home/gallery";
+import HomeTestimonials from "@/components/home/testimonials";
+import siteConfig from "@/constants/site.json";
 import "../styles/global.css";
-const siteUrl = 'https://naazcommercialinstitute.in';
-const title = 'Naaz Commercial Institute — Hope | Health | Education';
+const siteUrl = siteConfig.url;
+const title = `${siteConfig.name} - ${siteConfig.tagline}`;
 const description = 'Naaz Commercial Institute (NGO) provides vocational training, skill development, and community programs to empower individuals and create sustainable livelihoods.';
 const keywords = 'Naaz Commercial Institute, NGO, vocational training, community development, skill development, training institute';
-const logo = `${siteUrl}/images/logo.png`;
+const logo = siteConfig.logo;
 const twitterHandle = '@NaazCommercialInstitute';
 ---
 
@@ -59,5 +67,15 @@ const twitterHandle = '@NaazCommercialInstitute';
 	</head>
 
 	<body>
+		<Header client:load />
+		<main id="main-content" role="main">
+			<HomeHero client:load />
+			<HomeMission client:load />
+			<HomeImpact client:load />
+			<HomeGallery client:load />
+			<HomeTestimonials client:load />
+			<!-- <HomeCTA /> -->
+		</main>
+		<Footer client:load />
 	</body>
 </html>

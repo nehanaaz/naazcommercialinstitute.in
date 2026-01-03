@@ -22,6 +22,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     alias: {
+      '@/constants/': '/src/constants/',
       '@/components/': '/src/components/',
       '@/lib/': '/src/lib/',
       '@/hooks/': '/src/hooks/',
