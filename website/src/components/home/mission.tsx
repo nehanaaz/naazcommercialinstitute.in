@@ -100,7 +100,6 @@ export default function HomeMission() {
                 {[1, 2, 3, 4].map((i) => (
                   <Image
                     key={i}
-                    src={`/indian-student-face.png?height=40&width=40&query=indian student face ${i}`}
                     alt=""
                     className="w-10 h-10 rounded-full border-2 border-background object-cover"
                   />

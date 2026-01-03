@@ -2,10 +2,10 @@
 
 import * as React from "react"
 
-export function Image({ ...props }: React.ImgHTMLAttributes<HTMLImageElement>) {
+export function Image({ src, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) {
     const handleError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
         event.currentTarget.src = '/placeholder.svg';
     };
 
-    return <img {...props} onError={handleError} />;
+    return <img {...props} src={src || '/placeholder.svg'} onError={handleError} />;
 }

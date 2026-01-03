@@ -95,7 +95,6 @@ export default function HomeGallery() {
             >
               <article className="relative aspect-[4/3] overflow-hidden rounded-xl bg-muted">
                 <Image
-                  src={item.image || "/placeholder.svg"}
                   alt={item.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -125,7 +124,6 @@ export default function HomeGallery() {
             <div className="px-4 pb-8">
               <div className="aspect-video rounded-lg overflow-hidden mb-5 bg-muted">
                 <Image
-                  src={selected?.image || "/placeholder.svg"}
                   alt={selected?.title || ""}
                   className="w-full h-full object-cover"
                 />

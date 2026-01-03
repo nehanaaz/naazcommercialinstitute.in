@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Heart, ArrowRight, Users, GraduationCap, Award, Play } from "lucide-react"
+import { Image } from "@/components/ui/image"
 
 const stats = [
   { icon: Users, value: "50,000+", label: "Lives Impacted" },
@@ -137,7 +138,7 @@ export function HeroSection() {
             <div className="relative">
               {/* Main image container */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-foreground/10">
-                <img
+                <Image
                   alt="Children learning at Naaz Commercial Institute"
                   className="w-full h-auto object-cover aspect-[4/5] lg:aspect-square"
                   width={600}

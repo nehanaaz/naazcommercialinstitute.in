@@ -74,7 +74,6 @@ export default function HomeHero() {
           >
             <div className="relative rounded-3xl overflow-hidden border border-border/50">
               <Image
-                src="/rural-indian-children-smiling-in-classroom-learnin.jpg"
                 alt="Happy children learning in classroom at Naaz Commercial Institute"
                 className="w-full h-[500px] lg:h-[600px] object-cover"
               />
@@ -90,7 +89,6 @@ export default function HomeHero() {
             >
               <div className="flex gap-4">
                 <Image
-                  src="/young-indian-student-boy-smiling-portrait-hope.jpg"
                   alt="Student Ravi Kumar"
                   className="w-14 h-14 rounded-full object-cover ring-4 ring-background"
                 />
