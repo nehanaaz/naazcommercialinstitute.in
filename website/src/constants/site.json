@@ -1,0 +1,64 @@
+{
+  "name": "Naaz Commercial Institute",
+  "shortName": "Naaz Commercial Institute",
+  "tagline": "Hope | Health | Education",
+  "description": "Naaz Commercial Institute in Makhdumpur, Jehanabad, Bihar empowers rural youth, women through quality commercial education since 1990.",
+  "logo": "/images/logo.png",
+  "url": "https://naazcommercialinstitute.in",
+  "location": {
+    "address": "Makhdumpur",
+    "city": "Jehanabad",
+    "state": "Bihar",
+    "pincode": "804422",
+    "country": "India",
+    "full": "Makhdumpur, Jehanabad, Bihar 804422, India"
+  },
+  "contact": {
+    "email": "nksjahanabad@gmail.com",
+    "phone": "+91-9097351490"
+  },
+  "founded": 1990,
+  "social": {
+    "facebook": "https://www.facebook.com/p/Naaz-Commercial-Institute-100066866261018/",
+    "instagram": "https://instagram.com/naazcommercialinstitute"
+  },
+  "stats": {
+    "studentsTrainedCount": 1000,
+    "womenEmpowered": 800,
+    "yearsOfService": 36,
+    "familiesSupported": 1000,
+    "partnersCount": 5,
+    "coursesOffered": 12,
+    "villagesReached": 20
+  },
+  "navigation": [
+    { "label": "Home", "href": "/" },
+    { "label": "About", "href": "/about" },
+    { "label": "Impact", "href": "/impact" },
+    { "label": "Stories", "href": "/testimonials" }
+  ],
+  "quickLinks": [
+    { "label": "Home", "href": "/" },
+    { "label": "About Us", "href": "/about" },
+    { "label": "Our Impact", "href": "/impact" },
+    { "label": "Stories", "href": "/testimonials" },
+    { "label": "Donate", "href": "/donate" }
+  ],
+  "legalLinks": [
+    { "label": "Privacy Policy", "href": "/privacy" },
+    { "label": "Terms of Use", "href": "/terms" },
+    { "label": "Annual Reports", "href": "/reports" }
+  ],
+  "partners": [
+    { "name": "State Bank of India", "logo": "/partners/sbi.svg" },
+    { "name": "HDFC Bank", "logo": "/partners/hdfc.svg" },
+    { "name": "Bihar Skill Mission", "logo": "/partners/bsm.svg" },
+    { "name": "NSDC", "logo": "/partners/nsdc.svg" }
+  ],
+  "certifications": [
+    { "name": "ISO 9001:2015", "badge": "ISO Certified" },
+    { "name": "NSDC Approved", "badge": "NSDC Partner" },
+    { "name": "12A & 80G", "badge": "Tax Exempt" }
+  ],
+  "languages": [{ "code": "en", "label": "English", "flag": "🇬🇧" }, { "code": "hi", "label": "हिंदी", "flag": "🇮🇳" }]
+}
