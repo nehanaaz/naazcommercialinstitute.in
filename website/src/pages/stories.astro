@@ -48,19 +48,14 @@ const twitterHandle = '@NaazCommercialInstitute';
 		<meta name="twitter:image" content={logo} />
 
 		<!-- Structured data: Organization + WebSite -->
-		<script type="application/ld+json">
-			{JSON.stringify({
-				"@context": "https://schema.org",
-				"@type": "NGO",
-				"name": "Naaz Commercial Institute",
-				"url": siteUrl,
-				"logo": logo,
-				"description": description,
-				"sameAs": [
-					// add social links as available
-				]
-			})}
-		</script>
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "NGO",
+			"name": "Naaz Commercial Institute",
+			"url": siteUrl,
+			"logo": logo,
+			"description": description
+		})} />
 	</head>
 
 	<body>
