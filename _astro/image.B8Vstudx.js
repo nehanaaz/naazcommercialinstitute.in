@@ -1,0 +1,1 @@
+import{j as t}from"./jsx-runtime.D_zvdyIk.js";import"./index.Da02gyCa.js";function c({src:r,...o}){const e=s=>{s.currentTarget.src="/placeholder.svg"};return t.jsx("img",{...o,src:r||"/placeholder.svg",onError:e,loading:"lazy"})}export{c as I};
