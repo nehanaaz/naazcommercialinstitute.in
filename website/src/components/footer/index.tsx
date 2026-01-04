@@ -1,5 +1,6 @@
 import { Heart, Mail, MapPin, Phone } from "lucide-react"
 import siteConfig from "@/constants/site.json"
+import { Image } from "@/components/ui/image"
 
 export default function Footer() {
   return (
@@ -10,7 +11,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img src={siteConfig.logo || "/placeholder.svg"} alt="" width={40} height={40} className="rounded-xl" />
+              <Image src={siteConfig.logo || "/placeholder.svg"} alt="" width={40} height={40} className="rounded-xl" />
               <div>
                 <p className="text-base font-medium text-foreground tracking-tight">{siteConfig.shortName}</p>
                 <p className="text-xs text-muted-foreground tracking-wide">{siteConfig.tagline}</p>

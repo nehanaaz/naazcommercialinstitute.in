@@ -3,8 +3,9 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Heart } from "lucide-react"
+import { ImageCarousel } from "@/components/carousel/image"
 import siteConfig from "@/constants/site.json"
-import { Image } from "@/components/ui/image"
+import gallery from "@/constants/gallery.json"
 
 export default function HomeHero() {
   return (
@@ -72,35 +73,7 @@ export default function HomeHero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative rounded-3xl overflow-hidden border border-border/50">
-              <Image
-                alt="Happy children learning in classroom at Naaz Commercial Institute"
-                className="w-full h-[500px] lg:h-[600px] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-            </div>
-
-            {/* Floating testimonial card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="absolute -bottom-6 -left-6 lg:left-0 right-6 lg:right-auto lg:w-80 bg-card border border-border rounded-2xl p-6"
-            >
-              <div className="flex gap-4">
-                <Image
-                  alt="Student Ravi Kumar"
-                  className="w-14 h-14 rounded-full object-cover ring-4 ring-background"
-                />
-                <div className="flex-1">
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-2">
-                    "This institute gave me the skills to support my family. Forever grateful."
-                  </p>
-                  <p className="text-xs font-medium text-foreground">Ravi Kumar</p>
-                  <p className="text-xs text-muted-foreground">Computer Training Graduate, 2023</p>
-                </div>
-              </div>
-            </motion.div>
+            <ImageCarousel images={gallery} />
           </motion.div>
         </div>
       </div>

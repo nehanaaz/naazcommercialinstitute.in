@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Heart } from "lucide-react"
 import siteConfig from "@/constants/site.json"
+import { Image } from "@/components/ui/image"
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -48,7 +49,7 @@ export default function Header() {
               className="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl transition-opacity hover:opacity-80"
               aria-label={`${siteConfig.name} - Home`}
             >
-              <img src={siteConfig.logo || "/placeholder.svg"} alt="" width={48} height={48} className="rounded-xl" />
+              <Image src={siteConfig.logo || "/placeholder.svg"} alt="" width={48} height={48} className="rounded-xl" />
               <div className="hidden sm:block">
                 <span className="block text-base font-medium text-foreground tracking-tight leading-tight">
                   {siteConfig.shortName}

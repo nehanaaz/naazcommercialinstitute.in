@@ -7,5 +7,5 @@ export function Image({ src, ...props }: React.ImgHTMLAttributes<HTMLImageElemen
         event.currentTarget.src = '/placeholder.svg';
     };
 
-    return <img {...props} src={src || '/placeholder.svg'} onError={handleError} />;
+    return <img {...props} src={src || '/placeholder.svg'} onError={handleError} loading="lazy" />;
 }
