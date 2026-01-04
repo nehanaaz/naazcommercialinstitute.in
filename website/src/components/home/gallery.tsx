@@ -92,7 +92,7 @@ export default function HomeGallery() {
               <DrawerTitle className="font-serif text-2xl">{selected?.title}</DrawerTitle>
             </DrawerHeader>
             <div className="px-4 pb-8">
-              <Gallery title={selected?.title} images={selected?.images} className="mb-5" />
+              <Gallery title={selected?.title} images={selected?.images} className="mb-5" onImageClick={() => setSelected(null)} />
               <DrawerDescription className="text-base text-muted-foreground leading-relaxed">
                 {selected?.description}
               </DrawerDescription>

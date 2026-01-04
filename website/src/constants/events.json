@@ -95,15 +95,20 @@
     "year": 2021,
     "title": "Health & Education",
     "description": "Started in 2021, the Health & Education program focuses on children under five years of age from underprivileged communities. By providing pre-nutrition support and early education, the initiative aims to build a strong foundation for healthy growth and learning, recognizing early care as a key step in breaking the cycle of poverty.",
-    "image": "/images/programs/pre-nutrition-&-education/005.jpeg",
+    "image": "/images/programs/pre-nutrition-&-education/012.jpg",
     "images": [
+      "/images/programs/pre-nutrition-&-education/011.jpg",
+      "/images/programs/pre-nutrition-&-education/010.jpg",
+      "/images/programs/pre-nutrition-&-education/012.jpg",
+      "/images/programs/pre-nutrition-&-education/009.jpg",
       "/images/programs/pre-nutrition-&-education/005.jpeg",
       "/images/programs/pre-nutrition-&-education/004.jpeg",
       "/images/programs/pre-nutrition-&-education/002.jpeg",
       "/images/programs/pre-nutrition-&-education/006.jpeg",
       "/images/programs/pre-nutrition-&-education/007.jpeg",
       "/images/programs/pre-nutrition-&-education/001.jpg",
-      "/images/programs/pre-nutrition-&-education/003.jpeg"
+      "/images/programs/pre-nutrition-&-education/003.jpeg",
+      "/images/programs/pre-nutrition-&-education/008.jpg"
     ]
   },
   {
@@ -139,11 +144,12 @@
   },
   {
     "year": 1990,
-    "title": "Vocational Training",
+    "title": "Vocational Training & Women Empowerment",
     "description": "In 1990, the organization took its first step toward empowering marginalized communities by launching vocational training programs for rural and economically disadvantaged individuals. Beginning with 100 students, the initiative focused on practical skills such as shorthand, typing in English, Hindi, and Urdu, stitching and tailoring, and basic pre-school education. Designed especially for uneducated women, the program helped participants gain confidence, independence, and a pathway toward self-reliance and dignity through skill-based learning.",
     "image": "/images/programs/women-empowerment/001.jpg",
     "images": [
-      "/images/programs/women-empowerment/001.jpg"
+      "/images/programs/women-empowerment/001.jpg",
+      "/images/programs/women-empowerment/002.jpg"
     ]
   },
   {

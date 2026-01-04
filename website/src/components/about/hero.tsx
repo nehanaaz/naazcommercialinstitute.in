@@ -5,7 +5,7 @@ import { Image } from "@/components/ui/image"
 
 export default function ImpactHero() {
   return (
-    <section className="relative py-20 md:py-28 bg-gradient-to-br from-primary/5 via-background to-background overflow-hidden">
+    <section className="relative py-20 md:py-28 px-4 bg-gradient-to-br from-primary/5 via-background to-background overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <p className="text-xs font-medium text-primary uppercase tracking-[0.2em] mb-3">About Us</p>

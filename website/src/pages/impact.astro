@@ -3,6 +3,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import ImpactHero from "@/components/impact/hero";
 import ImpactEvents from "@/components/impact/events";
+import { ImageViewer } from "@/components/image-viewer";
 import siteConfig from "@/constants/site.json";
 import "../styles/global.css";
 const siteUrl = siteConfig.url;
@@ -63,6 +64,7 @@ const twitterHandle = siteConfig.social.twitter;
 		<main id="main-content" role="main">
 			<ImpactHero client:load />
 			<ImpactEvents client:load />
+			<ImageViewer client:load />
 		</main>
 		<Footer client:load />
 	</body>

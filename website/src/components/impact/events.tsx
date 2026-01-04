@@ -8,7 +8,7 @@ import { Gallery } from "../gallery"
 export default function ImpactEvents() {
   const sortedEvents = useMemo(() => [...events].sort((a, b) => b.year - a.year), [events])
   return (
-    <section aria-labelledby="timeline-heading" className="py-16 md:py-24 bg-background">
+    <section aria-labelledby="timeline-heading" className="pb-16 md:pb-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="space-y-32">
           {sortedEvents.map((event, index) => (

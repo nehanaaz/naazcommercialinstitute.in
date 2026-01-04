@@ -1,4 +1,4 @@
-import { type ComponentProps, useEffect, useRef, useState } from "react";
+import { type ComponentProps, useCallback, useEffect, useRef, useState } from "react";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 import { Image } from "@/components/ui/image";
 import { cn } from "@/lib/utils";
@@ -90,29 +90,46 @@ export function ImageCarousel({ images }: { images: string[] }) {
                 </CarouselContent>
             </Carousel>
 
-            <ProgressBar className="w-1/4" api={api} progress={progress} />
+            <ProgressBarOverlay />
+            <ProgressBar className="w-1/4" api={api} progress={progress} current={current} />
         </div>
     )
 }
 
-function ProgressBar({ api, className, progress, ...props }: ComponentProps<'div'> & { api?: CarouselApi; progress: number }) {
-    // useEffect(() => {
-    //     if (!api) return
+function ProgressBarOverlay() {
+    return <div className="absolute left-0 right-0 bottom-0 h-1/4 bg-linear-to-t from-black to-transparent" />
+}
 
-    //     const onSlideChange = (api: CarouselApi, e: string) => {
-    //         console.log('Slide changed to:', api, e);
-    //     }
+function ProgressBar({ api, className, progress, current, ...props }: ComponentProps<'div'> & { api?: CarouselApi; progress: number; current: number }) {
+    const [totalImages, setTotalImages] = useState(0);
+    useEffect(() => {
+        if (!api) return
 
-    //     api.on('slidesChanged', onSlideChange);
+        const onSlidesInit = (api: CarouselApi) => {
+            setTotalImages(api?.slideNodes().length || 0);
+        }
 
-    //     return () => {
-    //         api.off('slidesChanged', onSlideChange);
-    //     }
-    // }, [api])
+        onSlidesInit(api);
+        api.on('init', onSlidesInit);
+        api.on('reInit', onSlidesInit);
+
+        return () => {
+            api.off('init', onSlidesInit);
+            api.off('reInit', onSlidesInit);
+        }
+    }, [api])
+
+    const getProgress = useCallback((progress: number, index: number) => {
+        return current === index ? progress : undefined;
+    }, [current]);
 
     return (
         <div className={cn("absolute bottom-4 left-1/2 -translate-x-1/2 z-100 flex gap-1 items-center", className)} role="carousel" {...props}>
-            <ProgressItem progress={progress} />
+            {
+                Array.from({ length: totalImages }).map((_, index) => (
+                    <ProgressItem key={index} progress={getProgress(progress, index)} />
+                ))
+            }
         </div>
     )
 }
@@ -121,16 +138,16 @@ function ProgressItem({ className, progress, ...props }: ComponentProps<'div'> &
     return (
         <div
             className={cn(
-                progress !== undefined ? "flex-auto w-full" : "flex-none size-1",
-                "h-1 rounded-lg bg-black/20 overflow-hidden opacity-50 group-hover:opacity-100 transition-all",
+                progress !== undefined ? "flex-auto w-full" : "flex-none size-1.5",
+                "h-1.5 rounded-lg bg-white/20 overflow-hidden opacity-60 group-hover:opacity-100 transition-all duration-300",
                 className
             )}
             role="progressbar"
             {...props}
         >
             <div
-                className="h-full bg-white"
-                style={{ width: `${progress}%` }}
+                className="h-full bg-white rounded-lg"
+                style={{ width: `${progress ?? 0}%` }}
             />
         </div>
     )
