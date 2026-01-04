@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDown, HelpCircle } from "lucide-react"
+import siteConfig from "@/constants/site.json"
 import faqs from "@/constants/faqs.json"
 
 interface FAQSectionProps {
@@ -132,7 +133,7 @@ export default function FAQSection({ limit, showAllLink = false }: FAQSectionPro
             We're here to help! Reach out to us and we'll get back to you as soon as possible.
           </p>
           <a
-            href="mailto:info@naazcommercialinstitute.in"
+            href={`mailto:${siteConfig.contact.email}`}
             className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:opacity-90 transition-opacity"
           >
             Contact Us
