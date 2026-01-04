@@ -97,7 +97,7 @@ export default function HomeMission() {
               through skill-based learning that transforms lives, families, and communities.
             </p>
             <div className="flex items-center gap-4 pt-4 border-t border-border">
-              <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
+              <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2">
                 {donors.donors.slice(0, 4).map((i, index) => (
                   <Avatar key={`donor-${index}`}>
                     <AvatarImage src={i.avatar || "/placeholder.svg"} alt={i.name} />

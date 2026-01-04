@@ -2,7 +2,7 @@
 
 import {Image} from "@/components/ui/image"
 import { useState, useRef } from "react"
-import { AnimatePresence, motion, useInView } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import {
   Drawer,
   DrawerContent,
@@ -12,11 +12,11 @@ import {
   DrawerClose,
 } from "@/components/ui/drawer"
 import { Button } from "@/components/ui/button"
-import { X, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
+import { X, ArrowRight } from "lucide-react"
 import events from "@/constants/events.json"
-import { Dialog, DialogContent, DialogClose, DialogTitle } from "@/components/ui/dialog"
+import { Gallery } from "@/components/gallery"
 
-const marqueeItems = [...events, ...events]
+const marqueeItems = [...events.filter((e) => e.image), ...events.filter((e) => e.image)]
 
 export default function HomeGallery() {
   const [selected, setSelected] = useState<(typeof events)[0] | null>(null)
@@ -60,13 +60,13 @@ export default function HomeGallery() {
               onClick={() => setSelected(item)}
               className="flex-shrink-0 w-80 mx-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-xl"
               whileHover={{ y: -4 }}
-              transition={{ type: "spring", stiffness: 400 }}
+              transition={{ type: "tween", stiffness: 400 }}
             >
               <article className="relative aspect-[4/3] overflow-hidden rounded-xl bg-muted">
                 <Image
-                  src={item.images[0]}
+                  src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5">
@@ -92,70 +92,7 @@ export default function HomeGallery() {
               <DrawerTitle className="font-serif text-2xl">{selected?.title}</DrawerTitle>
             </DrawerHeader>
             <div className="px-4 pb-8">
-              <div className="mb-5">
-                {selected?.images && selected.images.length === 1 && (
-                  <button className="w-full aspect-video rounded-lg overflow-hidden bg-muted hover:opacity-95 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                    <Image
-                      src={selected.images[0] || "/placeholder.svg"}
-                      alt={selected?.title || ""}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                )}
-
-                {selected?.images && selected.images.length === 2 && (
-                  <div className="grid grid-cols-2 gap-2">
-                    {selected.images.map((img, idx) => (
-                      <button key={idx} className="aspect-[3/4] rounded-lg overflow-hidden bg-muted hover:opacity-95 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                        <Image
-                          src={img || "/placeholder.svg"}
-                          alt={`${selected?.title} ${idx + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </button>
-                    ))}
-                  </div>
-                )}
-
-                {selected?.images && selected.images.length >= 3 && (
-                  <div className="grid grid-cols-2 gap-2 h-[400px]">
-                    <button
-                      className="row-span-2 rounded-lg overflow-hidden bg-muted hover:opacity-95 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    >
-                      <Image
-                        src={selected.images[0] || "/placeholder.svg"}
-                        alt={`${selected?.title} 1`}
-                        className="w-full h-full object-cover"
-                      />
-                    </button>
-                    <button
-                      className="rounded-lg overflow-hidden bg-muted hover:opacity-95 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    >
-                      <Image
-                        src={selected.images[1] || "/placeholder.svg"}
-                        alt={`${selected?.title} 2`}
-                        className="w-full h-full object-cover"
-                      />
-                    </button>
-                    <button
-                      className="relative rounded-lg overflow-hidden bg-muted hover:opacity-95 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    >
-                      <Image
-                        src={selected.images[2] || "/placeholder.svg"}
-                        alt={`${selected?.title} 3`}
-                        className="w-full h-full object-cover"
-                      />
-                      {selected.images.length > 3 && (
-                        <div className="absolute inset-0 bg-foreground/10 flex items-center justify-center backdrop-blur-sm">
-                          <span className="text-background text-2xl font-medium">
-                            +{selected.images.length - 3} more
-                          </span>
-                        </div>
-                      )}
-                    </button>
-                  </div>
-                )}
-              </div>
+              <Gallery title={selected?.title} images={selected?.images} className="mb-5" />
               <DrawerDescription className="text-base text-muted-foreground leading-relaxed">
                 {selected?.description}
               </DrawerDescription>

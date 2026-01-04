@@ -20,7 +20,8 @@
   "founded": 1990,
   "social": {
     "facebook": "https://www.facebook.com/p/Naaz-Commercial-Institute-100066866261018/",
-    "instagram": "https://instagram.com/naazcommercialinstitute"
+    "instagram": "https://instagram.com/naazcommercialinstitute",
+    "twitter": "@NaazCommercialInstitute"
   },
   "stats": {
     "studentsTrainedCount": 1000,
@@ -42,23 +43,12 @@
     { "label": "About Us", "href": "/about" },
     { "label": "Our Impact", "href": "/impact" },
     { "label": "Stories", "href": "/stories" },
-    { "label": "Donate", "href": "/donate" }
+    { "label": "Donate", "href": "/donate" },
+    { "label": "FAQs", "href": "/faqs" }
   ],
   "legalLinks": [
     { "label": "Privacy Policy", "href": "/privacy" },
     { "label": "Terms of Use", "href": "/terms" },
     { "label": "Annual Reports", "href": "/reports" }
-  ],
-  "partners": [
-    { "name": "State Bank of India", "logo": "/partners/sbi.svg" },
-    { "name": "HDFC Bank", "logo": "/partners/hdfc.svg" },
-    { "name": "Bihar Skill Mission", "logo": "/partners/bsm.svg" },
-    { "name": "NSDC", "logo": "/partners/nsdc.svg" }
-  ],
-  "certifications": [
-    { "name": "ISO 9001:2015", "badge": "ISO Certified" },
-    { "name": "NSDC Approved", "badge": "NSDC Partner" },
-    { "name": "12A & 80G", "badge": "Tax Exempt" }
-  ],
-  "languages": [{ "code": "en", "label": "English", "flag": "🇬🇧" }, { "code": "hi", "label": "हिंदी", "flag": "🇮🇳" }]
+  ]
 }

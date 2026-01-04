@@ -8,12 +8,13 @@ import HomeGallery from "@/components/home/gallery";
 import HomeDonors from "@/components/home/donors";
 import siteConfig from "@/constants/site.json";
 import "../styles/global.css";
+import FAQSection from "@/components/faqs";
 const siteUrl = siteConfig.url;
 const title = `${siteConfig.name} - ${siteConfig.tagline}`;
 const description = 'Naaz Commercial Institute (NGO) provides vocational training, skill development, and community programs to empower individuals and create sustainable livelihoods.';
 const keywords = 'Naaz Commercial Institute, NGO, vocational training, community development, skill development, training institute';
 const logo = siteConfig.logo;
-const twitterHandle = '@NaazCommercialInstitute';
+const twitterHandle = siteConfig.social.twitter;
 ---
 
 <!doctype html>
@@ -69,6 +70,7 @@ const twitterHandle = '@NaazCommercialInstitute';
 			<HomeImpact client:load />
 			<HomeGallery client:load />
 			<HomeDonors client:load />
+			<FAQSection client:load limit={4} showAllLink={true} />
 		</main>
 		<Footer client:load />
 	</body>

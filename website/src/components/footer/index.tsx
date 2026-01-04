@@ -25,7 +25,7 @@ export default function Footer() {
           <div>
             <p className="text-sm font-medium text-foreground mb-4 tracking-tight">Quick Links</p>
             <nav aria-label="Footer navigation" className="flex flex-col gap-2">
-              {siteConfig.navigation.map((link) => (
+              {siteConfig.quickLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
