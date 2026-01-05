@@ -34,21 +34,21 @@
   },
   "navigation": [
     { "label": "Home", "href": "/" },
-    { "label": "About", "href": "/about" },
-    { "label": "Impact", "href": "/impact" },
-    { "label": "Stories", "href": "/stories" }
+    { "label": "About", "href": "/about/" },
+    { "label": "Impact", "href": "/impact/" },
+    { "label": "Stories", "href": "/stories/" }
   ],
   "quickLinks": [
     { "label": "Home", "href": "/" },
-    { "label": "About Us", "href": "/about" },
-    { "label": "Our Impact", "href": "/impact" },
-    { "label": "Stories", "href": "/stories" },
-    { "label": "Donate", "href": "/donate" },
-    { "label": "FAQs", "href": "/faqs" }
+    { "label": "About Us", "href": "/about/" },
+    { "label": "Our Impact", "href": "/impact/" },
+    { "label": "Stories", "href": "/stories/" },
+    { "label": "Donate", "href": "/donate/" },
+    { "label": "FAQs", "href": "/faqs/" }
   ],
   "legalLinks": [
-    { "label": "Privacy Policy", "href": "/privacy" },
-    { "label": "Terms of Use", "href": "/terms" },
-    { "label": "Annual Reports", "href": "/reports" }
+    { "label": "Privacy Policy", "href": "/privacy/" },
+    { "label": "Terms of Use", "href": "/terms/" },
+    { "label": "Annual Reports", "href": "/reports/" }
   ]
 }

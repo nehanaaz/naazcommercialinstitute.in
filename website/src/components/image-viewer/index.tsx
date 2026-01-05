@@ -4,29 +4,34 @@ import {
   useState,
   useSyncExternalStore,
   type ComponentProps,
-} from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Image } from "@/components/ui/image"
-import { cn } from "@/lib/utils"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { useIsMobile } from "@/hooks/use-mobile"
+} from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Image } from "@/components/ui/image";
+import { cn } from "@/lib/utils";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
-type ViewerImage = { src: string }
+type ViewerImage = { src: string };
 
 type ImageViewerState = {
-  isOpen: boolean
-  album: ViewerImage[]
-  currentIndex: number
-}
+  isOpen: boolean;
+  album: ViewerImage[];
+  currentIndex: number;
+};
 
 declare global {
-  var __viewer: ImageViewerStore | undefined
+  var __viewer: ImageViewerStore | undefined;
 }
 
 type ImageViewerStore = {
-  state: ImageViewerState
-  listeners: Set<() => void>
-}
+  state: ImageViewerState;
+  listeners: Set<() => void>;
+};
 
 const store: ImageViewerStore =
   globalThis.__viewer ??
@@ -37,10 +42,10 @@ const store: ImageViewerStore =
       currentIndex: 0,
     },
     listeners: new Set(),
-  })
+  });
 
 function emit() {
-  store.listeners.forEach(l => l())
+  store.listeners.forEach((l) => l());
 }
 
 export const viewer = {
@@ -48,43 +53,41 @@ export const viewer = {
   getState: () => store.state,
 
   subscribe(listener: () => void) {
-    store.listeners.add(listener)
-    return () => store.listeners.delete(listener)
+    store.listeners.add(listener);
+    return () => store.listeners.delete(listener);
   },
 
   /* ----- actions ----- */
   open(index = 0) {
     store.state.currentIndex = index;
     store.state.isOpen = true;
-    emit()
+    emit();
   },
 
   close() {
     store.state.isOpen = false;
-    emit()
+    emit();
   },
 
   setAlbum(album: ViewerImage[]) {
     store.state.album = album;
     store.state.currentIndex = 0;
-    emit()
+    emit();
   },
-}
+};
 
-export function useImageViewer<T>(
-  selector: (s: ImageViewerState) => T
-) {
+export function useImageViewer<T>(selector: (s: ImageViewerState) => T) {
   return useSyncExternalStore(
     viewer.subscribe,
     () => selector(viewer.getState()),
-    () => selector(viewer.getState())
-  )
+    () => selector(viewer.getState()),
+  );
 }
 
 export function ImageViewer(_: ComponentProps<"div">) {
-  const isOpen = useImageViewer(s => s.isOpen)
-  const album = useImageViewer(s => s.album)
-  const currentIndex = useImageViewer(s => s.currentIndex)
+  const isOpen = useImageViewer((s) => s.isOpen);
+  const album = useImageViewer((s) => s.album);
+  const currentIndex = useImageViewer((s) => s.currentIndex);
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -101,30 +104,38 @@ export function ImageViewer(_: ComponentProps<"div">) {
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [currentIndex, isOpen])
+  }, [currentIndex, isOpen]);
 
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => { if (!open) viewer.close() }}>
-      <DialogContent className="bg-transparent rounded-none border-none shadow-none !w-full !max-w-none !h-svh">
+    <Dialog
+      open={isOpen}
+      onOpenChange={(open) => {
+        if (!open) viewer.close();
+      }}
+    >
+      <DialogContent className="!h-svh !w-full !max-w-none rounded-none border-none bg-transparent shadow-none">
         <DialogHeader className="sr-only">
           <DialogTitle>Image Viewer</DialogTitle>
         </DialogHeader>
-        <div className="w-[90vw] h-[90vh] m-auto">
-          <Image src={album[currentIndex]?.src} className="w-full h-full object-contain" />
+        <div className="m-auto h-[90vh] w-[90vw]">
+          <Image
+            src={album[currentIndex]?.src}
+            className="h-full w-full object-contain"
+          />
         </div>
-        <div className="fixed bottom-0 left-0 right-0 bg-linear-to-t from-black to-transparent py-8 px-12 flex justify-center items-center">
+        <div className="fixed right-0 bottom-0 left-0 flex items-center justify-center bg-linear-to-t from-black to-transparent px-12 py-8">
           <Thumbnails />
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
 
 function Thumbnails({ max }: { max?: number }) {
   const isMobile = useIsMobile();
-  const maxValue = useMemo(() => max ?? isMobile ? 4 : 8, [isMobile, max]);
-  const album = useImageViewer(s => s.album)
-  const currentIndex = useImageViewer(s => s.currentIndex)
+  const maxValue = useMemo(() => ((max ?? isMobile) ? 4 : 8), [isMobile, max]);
+  const album = useImageViewer((s) => s.album);
+  const currentIndex = useImageViewer((s) => s.currentIndex);
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(maxValue);
 
@@ -148,16 +159,19 @@ function Thumbnails({ max }: { max?: number }) {
 
   const thumbnails = useMemo(() => {
     return album.slice(startIndex, endIndex);
-  }, [album, startIndex, endIndex])
+  }, [album, startIndex, endIndex]);
 
   return (
     <div className="flex gap-2 py-2 text-white">
       <button
-        className={cn('size-8 sm:size-16 cursor-pointer flex items-center justify-center', isPreviousButtonDisabled && 'opacity-50 cursor-not-allowed')}
+        className={cn(
+          "flex size-8 cursor-pointer items-center justify-center sm:size-16",
+          isPreviousButtonDisabled && "cursor-not-allowed opacity-50",
+        )}
         onClick={() => {
           if (!isPreviousButtonDisabled) {
-            setStartIndex(s => Math.max(0, s - 1));
-            setEndIndex(e => Math.max(maxValue, e - 1));
+            setStartIndex((s) => Math.max(0, s - 1));
+            setEndIndex((e) => Math.max(maxValue, e - 1));
           }
         }}
         disabled={isPreviousButtonDisabled}
@@ -167,21 +181,24 @@ function Thumbnails({ max }: { max?: number }) {
       {thumbnails.map((image, index) => (
         <button
           key={`${startIndex + index}`}
-          className={cn('size-8 sm:size-16 cursor-pointer rounded-lg overflow-hidden', startIndex + index === currentIndex && 'ring-2 ring-secondary')}
+          className={cn(
+            "size-8 cursor-pointer overflow-hidden rounded-lg sm:size-16",
+            startIndex + index === currentIndex && "ring-secondary ring-2",
+          )}
           onClick={() => viewer.open(startIndex + index)}
         >
-          <Image
-            src={image.src}
-            className="w-full h-full object-cover"
-          />
+          <Image src={image.src} className="h-full w-full object-cover" />
         </button>
       ))}
       <button
-        className={cn('size-8 sm:size-16 cursor-pointer flex items-center justify-center', isNextButtonDisabled && 'opacity-50 cursor-not-allowed')}
+        className={cn(
+          "flex size-8 cursor-pointer items-center justify-center sm:size-16",
+          isNextButtonDisabled && "cursor-not-allowed opacity-50",
+        )}
         onClick={() => {
           if (!isNextButtonDisabled) {
-            setStartIndex(s => s + 1);
-            setEndIndex(e => Math.min(album.length, e + 1));
+            setStartIndex((s) => s + 1);
+            setEndIndex((e) => Math.min(album.length, e + 1));
           }
         }}
         disabled={isNextButtonDisabled}
@@ -189,5 +206,5 @@ function Thumbnails({ max }: { max?: number }) {
         <ChevronRight />
       </button>
     </div>
-  )
+  );
 }

@@ -1,0 +1,30 @@
+---
+import Blog from "@/layouts/blog.astro";
+import { getCollection, render } from "astro:content";
+import { getReadingTime } from "@/lib/read-time";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blogs");
+
+  return Promise.all(
+    posts.map(async (post) => {
+      const { Content } = await render(post);
+
+      return {
+        params: { slug: post.id },
+        props: {
+          data: post.data,
+          Content,
+          readingTime: getReadingTime(post.body),
+        },
+      };
+    }),
+  );
+}
+
+const { data, Content, readingTime } = Astro.props;
+---
+
+<Blog {...data} time={readingTime.time}>
+  <Content />
+</Blog>

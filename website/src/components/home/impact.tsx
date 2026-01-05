@@ -1,9 +1,15 @@
-"use client"
+"use client";
 
-import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion"
-import { useRef, useEffect } from "react"
-import { GraduationCap, TrendingUp, MapPin, Award } from "lucide-react"
-import siteConfig from "@/constants/site.json"
+import {
+  motion,
+  useInView,
+  useMotionValue,
+  useTransform,
+  animate,
+} from "framer-motion";
+import { useRef, useEffect } from "react";
+import { GraduationCap, TrendingUp, MapPin, Award } from "lucide-react";
+import siteConfig from "@/constants/site.json";
 
 const stats = [
   {
@@ -34,56 +40,65 @@ const stats = [
     icon: Award,
     description: "Dedicated to community transformation",
   },
-]
+];
 
 function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
-  const count = useMotionValue(0)
-  const rounded = useTransform(count, (latest) => Math.round(latest))
-  const ref = useRef<HTMLSpanElement>(null)
-  const inView = useInView(ref, { once: true, margin: "-50px" })
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
 
   useEffect(() => {
     if (inView) {
-      const controls = animate(count, value, { duration: 2.5, ease: "easeOut" })
-      return controls.stop
+      const controls = animate(count, value, {
+        duration: 2.5,
+        ease: "easeOut",
+      });
+      return controls.stop;
     }
-  }, [inView, value, count])
+  }, [inView, value, count]);
 
   return (
     <span ref={ref} className="tabular-nums">
       <motion.span>{rounded}</motion.span>
       {suffix}
     </span>
-  )
+  );
 }
 
 export default function HomeImpact() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section aria-labelledby="impact-heading" className="py-32 md:py-40 bg-accent/30" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section
+      aria-labelledby="impact-heading"
+      className="bg-accent/30 py-32 md:py-40"
+      ref={ref}
+    >
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center mb-20"
+          className="mx-auto mb-20 max-w-3xl text-center"
         >
-          <p className="text-xs font-medium text-primary uppercase tracking-[0.2em] mb-3">Our Impact</p>
+          <p className="text-primary mb-3 text-xs font-medium tracking-[0.2em] uppercase">
+            Our Impact
+          </p>
           <h2
             id="impact-heading"
-            className="font-serif text-3xl sm:text-4xl md:text-5xl text-foreground tracking-tight mb-4"
+            className="text-foreground mb-4 font-serif text-3xl tracking-tight sm:text-4xl md:text-5xl"
           >
             Creating ripples of change
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Every number represents a story of hope, transformation, and a family breaking free from the cycle of
-            poverty.
+          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
+            Every number represents a story of hope, transformation, and a
+            family breaking free from the cycle of poverty.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
           {stats.map((stat, index) => (
             <motion.article
               key={stat.label}
@@ -92,18 +107,26 @@ export default function HomeImpact() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group"
             >
-              <div className="bg-card rounded-2xl p-8 border border-border hover:border-primary/50 transition-all duration-300 h-full">
+              <div className="bg-card border-border hover:border-primary/50 h-full rounded-2xl border p-8 transition-all duration-300">
                 {/* Icon */}
-                <div className="inline-flex p-4 rounded-xl bg-primary/10 text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <stat.icon className="w-6 h-6" strokeWidth={2.5} aria-hidden="true" />
+                <div className="bg-primary/10 text-primary mb-6 inline-flex rounded-xl p-4 transition-transform duration-300 group-hover:scale-110">
+                  <stat.icon
+                    className="h-6 w-6"
+                    strokeWidth={2.5}
+                    aria-hidden="true"
+                  />
                 </div>
 
-                <p className="text-5xl sm:text-6xl font-serif text-foreground mb-5 tabular-nums tracking-tight">
+                <p className="text-foreground mb-5 font-serif text-5xl tracking-tight tabular-nums sm:text-6xl">
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                 </p>
 
-                <p className="text-lg font-medium text-foreground mb-2 tracking-tight">{stat.label}</p>
-                <p className="text-sm text-muted-foreground leading-relaxed">{stat.description}</p>
+                <p className="text-foreground mb-2 text-lg font-medium tracking-tight">
+                  {stat.label}
+                </p>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {stat.description}
+                </p>
               </div>
             </motion.article>
           ))}
@@ -115,26 +138,38 @@ export default function HomeImpact() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-20 text-center"
         >
-          <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Since {siteConfig.founded}, we've witnessed the transformation of individuals, families, and entire communities through the
-            power of education and skill development.
+          <p className="text-muted-foreground mx-auto max-w-2xl leading-relaxed">
+            Since {siteConfig.founded}, we've witnessed the transformation of
+            individuals, families, and entire communities through the power of
+            education and skill development.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 mt-12 text-sm text-muted-foreground">
+          <div className="text-muted-foreground mt-12 flex flex-wrap items-center justify-center gap-8 text-sm">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-primary" aria-hidden="true" />
-              <span>{siteConfig.stats.familiesSupported}+ families supported</span>
+              <div
+                className="bg-primary h-2 w-2 rounded-full"
+                aria-hidden="true"
+              />
+              <span>
+                {siteConfig.stats.familiesSupported}+ families supported
+              </span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-primary" aria-hidden="true" />
+              <div
+                className="bg-primary h-2 w-2 rounded-full"
+                aria-hidden="true"
+              />
               <span>Free education for underprivileged</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-primary" aria-hidden="true" />
+              <div
+                className="bg-primary h-2 w-2 rounded-full"
+                aria-hidden="true"
+              />
               <span>Women empowerment programs</span>
             </div>
           </div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

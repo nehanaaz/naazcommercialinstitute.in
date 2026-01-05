@@ -1,0 +1,65 @@
+[
+  { "label": "Income Tax Exemption", "slug": "income-tax-exemption" },
+  { "label": "80G Income Tax", "slug": "80g-income-tax" },
+  { "label": "Section 80G", "slug": "section-80g-income-tax-act" },
+  { "label": "Donation Tax Benefits", "slug": "donation-tax-benefits" },
+  { "label": "Charity Tax Deduction", "slug": "charity-donation-tax-deduction" },
+
+  { "label": "Online Donation", "slug": "online-donation" },
+  { "label": "How to Donate", "slug": "how-to-donate" },
+  { "label": "Ways to Donate", "slug": "ways-to-donate" },
+  { "label": "Donate to NGO", "slug": "donate-to-ngo-india" },
+  { "label": "Joy of Giving", "slug": "joy-of-giving" },
+  { "label": "Daan Utsav", "slug": "daan-utsav" },
+
+  { "label": "Education NGO", "slug": "education-ngo-india" },
+  { "label": "NGO for Education", "slug": "ngo-working-for-education" },
+  { "label": "Role of NGO in Education", "slug": "role-of-ngo-in-education" },
+  { "label": "Right to Education", "slug": "right-to-education-india" },
+  { "label": "RTE Act", "slug": "rte-act-india" },
+  { "label": "Education Donation", "slug": "education-donation" },
+  { "label": "Education Empowers", "slug": "education-empowers" },
+
+  { "label": "Girl Child Education", "slug": "girl-child-education" },
+  { "label": "Donate for Girl Child", "slug": "donate-for-girl-child-education" },
+  { "label": "Importance of Girl Education", "slug": "importance-of-girl-child-education" },
+  { "label": "Marginalization in Education", "slug": "marginalization-in-education" },
+
+  { "label": "Child Welfare India", "slug": "child-welfare-india" },
+  { "label": "Child Protection", "slug": "child-protection" },
+  { "label": "Child Protection Policy", "slug": "child-protection-policy" },
+  { "label": "Child Safeguarding", "slug": "child-safeguarding" },
+  { "label": "Child Participation", "slug": "child-participation" },
+  { "label": "Child Resilience", "slug": "child-resilience-program" },
+  { "label": "Child Champion", "slug": "child-champion" },
+
+  { "label": "Child Poverty", "slug": "child-poverty-india" },
+  { "label": "Helping Poor Children", "slug": "helping-poor-children" },
+  { "label": "Street Children Help", "slug": "how-to-help-street-children" },
+  { "label": "Underprivileged Children", "slug": "help-underprivileged-children" },
+
+  { "label": "Child Nutrition", "slug": "child-nutrition" },
+  { "label": "Child Health India", "slug": "child-health-india" },
+  { "label": "Child Abuse India", "slug": "child-abuse-in-india" },
+  { "label": "Child Labour Prevention", "slug": "prevention-of-child-labour" },
+  { "label": "Children Rights", "slug": "fundamental-rights-of-children" },
+
+  { "label": "Gender Equality", "slug": "gender-equality" },
+  { "label": "Gender Inequality Causes", "slug": "causes-of-gender-inequality" },
+  { "label": "Discrimination Against Women", "slug": "discrimination-against-women" },
+  { "label": "Women Entrepreneurs", "slug": "women-entrepreneurs-in-india" },
+  { "label": "Women Low Paid Work", "slug": "women-employed-in-low-paid-work" },
+
+  { "label": "Youth Nation Building", "slug": "role-of-youth-in-nation-building" },
+  { "label": "NGO Volunteer", "slug": "ngo-volunteer-india" },
+  { "label": "Volunteer for NGO", "slug": "volunteer-with-ngo" },
+
+  { "label": "CSR Fund", "slug": "csr-fund-india" },
+  { "label": "Corporate NGO Partnership", "slug": "corporate-ngo-partnerships" },
+  { "label": "CSR for Education", "slug": "csr-for-education" },
+
+  { "label": "Disaster Relief NGOs", "slug": "disaster-relief-organisations-india" },
+
+  { "label": "STEM Education", "slug": "stem-education-in-india" },
+  { "label": "No Detention Policy", "slug": "no-detention-policy-india" }
+]

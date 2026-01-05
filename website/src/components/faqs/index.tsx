@@ -1,41 +1,46 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronDown, HelpCircle } from "lucide-react"
-import siteConfig from "@/constants/site.json"
-import faqs from "@/constants/faqs.json"
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown, HelpCircle } from "lucide-react";
+import siteConfig from "@/constants/site.json";
+import faqs from "@/constants/faqs.json";
 
 interface FAQSectionProps {
-  limit?: number
-  showAllLink?: boolean
+  limit?: number;
+  showAllLink?: boolean;
 }
 
-export default function FAQSection({ limit, showAllLink = false }: FAQSectionProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+export default function FAQSection({
+  limit,
+  showAllLink = false,
+}: FAQSectionProps) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const displayedFAQs = limit ? faqs.slice(0, limit) : faqs
+  const displayedFAQs = limit ? faqs.slice(0, limit) : faqs;
 
   return (
     <section className="py-20 lg:py-32">
-      <div className="max-w-4xl mx-auto px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="mb-16 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 mb-6"
+            className="bg-primary/10 mb-6 inline-flex items-center gap-2 rounded-full px-4 py-2"
           >
-            <HelpCircle className="w-4 h-4 text-primary" />
-            <span className="text-xs font-medium uppercase tracking-[0.2em] text-primary">Have Questions?</span>
+            <HelpCircle className="text-primary h-4 w-4" />
+            <span className="text-primary text-xs font-medium tracking-[0.2em] uppercase">
+              Have Questions?
+            </span>
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="font-serif text-4xl lg:text-5xl tracking-tight text-balance mb-4"
+            className="mb-4 font-serif text-4xl tracking-tight text-balance lg:text-5xl"
           >
             Frequently Asked Questions
           </motion.h2>
@@ -44,9 +49,10 @@ export default function FAQSection({ limit, showAllLink = false }: FAQSectionPro
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-muted-foreground text-balance max-w-2xl mx-auto"
+            className="text-muted-foreground mx-auto max-w-2xl text-lg text-balance"
           >
-            Find answers to common questions about our programs, donations, and how you can get involved
+            Find answers to common questions about our programs, donations, and
+            how you can get involved
           </motion.p>
         </div>
 
@@ -62,15 +68,17 @@ export default function FAQSection({ limit, showAllLink = false }: FAQSectionPro
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full text-left bg-background border border-border rounded-2xl p-6 hover:border-primary/30 transition-all group"
+                className="bg-background border-border hover:border-primary/30 group w-full rounded-2xl border p-6 text-left transition-all"
                 aria-expanded={openIndex === index}
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
                     {faq.category && (
-                      <span className="inline-block text-xs font-medium text-primary mb-2">{faq.category}</span>
+                      <span className="text-primary mb-2 inline-block text-xs font-medium">
+                        {faq.category}
+                      </span>
                     )}
-                    <h3 className="font-medium text-base lg:text-lg text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="text-foreground group-hover:text-primary text-base font-medium transition-colors lg:text-lg">
                       {faq.question}
                     </h3>
                   </div>
@@ -79,7 +87,7 @@ export default function FAQSection({ limit, showAllLink = false }: FAQSectionPro
                     transition={{ duration: 0.3 }}
                     className="flex-shrink-0"
                   >
-                    <ChevronDown className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                    <ChevronDown className="text-muted-foreground group-hover:text-primary h-5 w-5 transition-colors" />
                   </motion.div>
                 </div>
 
@@ -92,7 +100,7 @@ export default function FAQSection({ limit, showAllLink = false }: FAQSectionPro
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <p className="text-muted-foreground leading-relaxed mt-4 pt-4 border-t border-border">
+                      <p className="text-muted-foreground border-border mt-4 border-t pt-4 leading-relaxed">
                         {faq.answer}
                       </p>
                     </motion.div>
@@ -109,14 +117,14 @@ export default function FAQSection({ limit, showAllLink = false }: FAQSectionPro
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mt-12"
+            className="mt-12 text-center"
           >
             <a
               href="/faqs"
-              className="inline-flex items-center gap-2 text-primary font-medium hover:underline underline-offset-4"
+              className="text-primary inline-flex items-center gap-2 font-medium underline-offset-4 hover:underline"
             >
               View all frequently asked questions
-              <ChevronDown className="w-4 h-4 rotate-[-90deg]" />
+              <ChevronDown className="h-4 w-4 rotate-[-90deg]" />
             </a>
           </motion.div>
         )}
@@ -126,20 +134,21 @@ export default function FAQSection({ limit, showAllLink = false }: FAQSectionPro
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 p-8 bg-muted/50 rounded-3xl text-center"
+          className="bg-muted/50 mt-16 rounded-3xl p-8 text-center"
         >
-          <h3 className="font-serif text-2xl mb-3">Still have questions?</h3>
+          <h3 className="mb-3 font-serif text-2xl">Still have questions?</h3>
           <p className="text-muted-foreground mb-6">
-            We're here to help! Reach out to us and we'll get back to you as soon as possible.
+            We're here to help! Reach out to us and we'll get back to you as
+            soon as possible.
           </p>
           <a
             href={`mailto:${siteConfig.contact.email}`}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:opacity-90 transition-opacity"
+            className="bg-primary text-primary-foreground inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium transition-opacity hover:opacity-90"
           >
             Contact Us
           </a>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

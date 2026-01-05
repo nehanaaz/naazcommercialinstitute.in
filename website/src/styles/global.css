@@ -178,7 +178,11 @@
 
 /* Text gradient */
 .text-gradient {
-  background: linear-gradient(135deg, var(--primary) 0%, oklch(0.45 0.12 180) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    oklch(0.45 0.12 180) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -248,3 +252,12 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--muted-foreground);
 }
+
+.markdown > h1, .markdown > h2, .markdown > h3, .markdown > h4,
+.markdown > h5, .markdown > h6 { font-weight: 600 }
+.markdown > h1 { font-size: 1.6rem; }
+.markdown > h2 { font-size: 1.4rem; }
+.markdown > h3 { font-size: 1.2rem; }
+.markdown > h4 { font-size: 1rem; }
+.markdown > h5 { font-size: 0.8rem; }
+.markdown > h6 { font-size: 0.625rem; }

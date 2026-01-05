@@ -1,0 +1,236 @@
+---
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import siteConfig from "@/constants/site.json";
+import "../styles/global.css";
+import { ImageViewer } from "@/components/image-viewer";
+import {
+  ArrowLeft,
+  BookOpen,
+  Building2,
+  Calendar,
+  Clock,
+  GraduationCap,
+  Heart,
+  Share2,
+  Users,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { formatDate } from "@/lib/date";
+import { Image } from "@/components/ui/image";
+const siteUrl = siteConfig.url;
+const logo = siteConfig.logo;
+const twitterHandle = siteConfig.social.twitter;
+
+interface Props {
+  title: string;
+  description: string;
+  keywords: string;
+  time?: string;
+  category?: "About Us" | "Donation" | "Programs" | "Education" | "Partnership"
+  related?: string[];
+  createdAt: Date | string;
+  lastUpdatedAt?: Date | string;
+}
+
+const {
+  title,
+  description = "Naaz Commercial Institute (NGO) provides vocational training, skill development, and community programs to empower individuals and create sustainable livelihoods.",
+  keywords = "Naaz Commercial Institute, NGO, vocational training, community development, skill development, training institute",
+  time,
+  category = 'Education',
+  related,
+  createdAt,
+  lastUpdatedAt,
+} = Astro.props;
+const siteTitle = `${title} | ${siteConfig.name}`;
+
+const categoryIcons: Record<string, React.ElementType> = {
+  "About Us": Building2,
+  Donation: Heart,
+  Programs: GraduationCap,
+  Education: BookOpen,
+  Partnership: Users,
+};
+
+const CategoryIcon = categoryIcons[category];
+
+async function onShare() {
+  const share = {
+    title,
+    text: description,
+    url: Astro.url.href,
+  };
+  try {
+    await navigator.share(share);
+  } catch {
+    console.log("Unsupported Share API");
+  }
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{siteTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={siteUrl} />
+
+    <!-- Favicon / icons (add actual files in /public if available) -->
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Naaz Commercial Institute" />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={logo} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={twitterHandle} />
+    <meta name="twitter:title" content={siteTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={logo} />
+
+    <!-- Structured data: Organization + WebSite -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "NGO",
+        name: "Naaz Commercial Institute",
+        url: siteUrl,
+        logo: logo,
+        description: description,
+      })}
+    />
+  </head>
+  <body>
+    <Header client:load />
+    <main id="main-content" role="main">
+      <section
+        class="from-primary/5 to-background relative bg-gradient-to-b pt-32 pb-10"
+      >
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+          <a
+            href="/blogs/"
+            class="text-muted-foreground hover:text-primary mb-8 inline-flex items-center gap-2 text-sm transition-colors"
+          >
+            <ArrowLeft className="size-4" />
+            Back to All Articles
+          </a>
+
+          <div class="mb-6 flex items-center gap-3">
+            <span
+              class="bg-primary/10 text-primary inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium"
+            >
+              <CategoryIcon className="size-3.5" />
+              {category}
+            </span>
+            <span
+              class="text-muted-foreground flex items-center gap-1.5 text-xs"
+            >
+              <Clock className="size-3.5" />{time}
+            </span>
+          </div>
+
+          <h1
+            class="text-foreground mb-6 font-serif text-3xl tracking-tight md:text-4xl lg:text-5xl"
+          >
+            {title}
+          </h1>
+
+          <p class="text-muted-foreground mb-8 text-lg leading-relaxed">
+            {description}
+          </p>
+
+          <div class="text-muted-foreground flex items-center gap-4 text-sm">
+            <div class="flex items-center gap-2">
+              <Image
+                src={siteConfig.logo || "/placeholder.svg"}
+                alt=""
+                className="h-10 w-10 rounded-full object-cover"
+              />
+              <div>
+                <p class="text-foreground font-medium">
+                  {siteConfig.shortName}
+                </p>
+                <p class="text-xs">
+                  {siteConfig.location.city}, {siteConfig.location.state}
+                </p>
+              </div>
+            </div>
+            <span class="bg-border h-8 w-px"></span>
+            <div class="flex items-center gap-1.5">
+              <Calendar className="size-4" />
+              <span>
+                {formatDate(createdAt)}
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        id="blog-content"
+        aria-labelledby="blog-content"
+        class="relative mx-auto max-w-7xl overflow-hidden px-6 pb-10 lg:px-8"
+      >
+        <div class="markdown flex flex-col gap-4">
+          <slot />
+        </div>
+        {(related?.length ?? 0) > 0 && (
+            <div class="mt-8 flex flex-wrap gap-2 py-8 border-t border-border">
+                <span class="text-sm text-muted-foreground mr-2">Related Topics:</span>
+                {related?.map((keyword) => (
+                    <span class="text-xs px-3 py-1 bg-muted rounded-full text-muted-foreground">
+                    {keyword}
+                    </span>
+                ))}
+            </div>
+        )}
+        <div
+          class="text-muted-foreground mt-8 flex items-center gap-1.5 text-sm"
+        >
+          Last updated:
+          <span>
+            {formatDate(lastUpdatedAt ?? createdAt)}
+          </span>
+        </div>
+      </section>
+      <section
+        id="share-section"
+        aria-labelledby="share-section"
+        class="relative mx-auto max-w-7xl overflow-hidden px-6 pb-16 lg:px-8"
+      >
+        <div
+          class="border-border flex items-center justify-between border-t py-6"
+        >
+          <p class="text-muted-foreground text-sm">
+            Found this helpful? Share it with others.
+          </p>
+          <Button
+            variant="outline"
+            size="sm"
+            className="gap-2 bg-transparent cursor-pointer"
+            onClick={onShare}
+          >
+            <Share2 className="size-4" />
+            Share
+          </Button>
+        </div>
+      </section>
+    </main>
+    <Footer client:load />
+    <ImageViewer client:load />
+  </body>
+</html>

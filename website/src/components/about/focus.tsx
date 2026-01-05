@@ -1,7 +1,14 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { GraduationCap, Laptop, Users2, Briefcase, Heart, TrendingUp } from "lucide-react"
+import { motion } from "framer-motion";
+import {
+  GraduationCap,
+  Laptop,
+  Users2,
+  Briefcase,
+  Heart,
+  TrendingUp,
+} from "lucide-react";
 
 const focusAreas = [
   {
@@ -40,30 +47,38 @@ const focusAreas = [
     description:
       "Workshops on spoken English, personality development, entrepreneurship basics, and soft skills to help youth compete confidently in today's job market.",
   },
-]
+];
 
 export default function AboutFocus() {
   return (
-    <section aria-labelledby="focus-heading" className="py-16 md:py-24 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section
+      aria-labelledby="focus-heading"
+      className="bg-background py-16 md:py-24"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="mb-12 max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10"
+          className="relative z-10 mx-auto mb-12 max-w-4xl px-4 text-center sm:px-6"
         >
-          <p className="text-xs font-medium text-primary uppercase tracking-[0.2em] mb-3">Our Focus</p>
-          <h2 id="focus-heading" className="font-serif text-3xl sm:text-4xl md:text-5xl text-foreground tracking-tight mb-4">
+          <p className="text-primary mb-3 text-xs font-medium tracking-[0.2em] uppercase">
+            Our Focus
+          </p>
+          <h2
+            id="focus-heading"
+            className="text-foreground mb-4 font-serif text-3xl tracking-tight sm:text-4xl md:text-5xl"
+          >
             What We Focus On
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Our work centers around six key areas that we believe are essential for holistic community development and
-            youth empowerment.
+          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
+            Our work centers around six key areas that we believe are essential
+            for holistic community development and youth empowerment.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {focusAreas.map((area, index) => (
             <motion.article
               key={area.title}
@@ -71,17 +86,24 @@ export default function AboutFocus() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-muted/30 rounded-lg p-6 border border-border hover:border-primary/30 transition-colors"
+              className="bg-muted/30 border-border hover:border-primary/30 rounded-lg border p-6 transition-colors"
             >
-              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                <area.icon className="w-6 h-6 text-primary" aria-hidden="true" />
+              <div className="bg-primary/10 mb-4 flex h-12 w-12 items-center justify-center rounded-full">
+                <area.icon
+                  className="text-primary h-6 w-6"
+                  aria-hidden="true"
+                />
               </div>
-              <h3 className="font-medium text-foreground text-lg mb-3">{area.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{area.description}</p>
+              <h3 className="text-foreground mb-3 text-lg font-medium">
+                {area.title}
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                {area.description}
+              </p>
             </motion.article>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
