@@ -9,16 +9,34 @@ interface Props {
   title?: string;
   description?: string;
   keywords?: string;
+  schema?: object;
 }
 
+const siteUrl = siteConfig.url;
+const logo = siteConfig.logo;
+const twitterHandle = siteConfig.social.twitter;
 const {
   title = `${siteConfig.name} - ${siteConfig.tagline}`,
   description = "Naaz Commercial Institute (NGO) provides vocational training, skill development, and community programs to empower individuals and create sustainable livelihoods.",
   keywords = "Naaz Commercial Institute, NGO, vocational training, community development, skill development, training institute",
+  schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "NGO",
+        name: "Naaz Commercial Institute",
+        url: siteUrl,
+        logo: logo,
+        description: description,
+      },
+      {
+        "@type": "WebSite",
+        url: siteUrl,
+        name: "Naaz Commercial Institute",
+      },
+    ],
+  }
 } = Astro.props;
-const siteUrl = siteConfig.url;
-const logo = siteConfig.logo;
-const twitterHandle = siteConfig.social.twitter;
 ---
 
 <!doctype html>
@@ -65,23 +83,7 @@ const twitterHandle = siteConfig.social.twitter;
     <!-- Structured data: Organization + WebSite -->
     <script
       type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "NGO",
-            name: "Naaz Commercial Institute",
-            url: siteUrl,
-            logo: logo,
-            description: description,
-          },
-          {
-            "@type": "WebSite",
-            url: siteUrl,
-            name: "Naaz Commercial Institute",
-          },
-        ],
-      })}
+      set:html={JSON.stringify(schema)}
     />
   </head>
 

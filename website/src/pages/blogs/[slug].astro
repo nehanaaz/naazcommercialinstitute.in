@@ -15,6 +15,7 @@ export async function getStaticPaths() {
       return {
         params: { slug: post.id },
         props: {
+          post,
           data: post.data,
           Content,
           readingTime: getReadingTime(post.body),
@@ -25,9 +26,9 @@ export async function getStaticPaths() {
   );
 }
 
-const { data, Content, readingTime, articles } = Astro.props;
+const { post, data, Content, readingTime, articles } = Astro.props;
 ---
 
-<Blog {...data} time={readingTime.time} articles={articles}>
+<Blog {...data} time={readingTime.time} articles={articles} post={post}>
   <Content components={{ a: Link }} />
 </Blog>

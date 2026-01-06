@@ -4,9 +4,24 @@ import siteConfig from "@/constants/site.json";
 import FAQSection from "@/components/faqs";
 import Page from "@/layouts/page.astro";
 const title = `Donate | ${siteConfig.name}`;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  url: Astro.url.href,
+  name: title,
+  description: siteConfig.description,
+  potentialAction: {
+    "@type": "DonateAction",
+    target: Astro.url.href,
+    recipient: {
+      "@type": "Organization",
+      name: siteConfig.name,
+    },
+  },
+}
 ---
 
-<Page title={title}>
+<Page title={title} schema={schema}>
   <main id="main-content" role="main">
     <DonateHero client:load />
     <FAQSection client:load limit={4} showAllLink={true} />

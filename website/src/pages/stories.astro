@@ -4,9 +4,15 @@ import StoriesShare from "@/components/stories/share";
 import siteConfig from "@/constants/site.json";
 import Page from "@/layouts/page.astro";
 const title = `Stories | ${siteConfig.name}`;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: title,
+  url: Astro.url.href,
+}
 ---
 
-<Page title={title}>
+<Page title={title} schema={schema}>
   <main id="main-content" role="main">
     <StoriesHero client:load />
     <StoriesShare client:load />

@@ -5,9 +5,16 @@ import { ImageViewer } from "@/components/image-viewer";
 import siteConfig from "@/constants/site.json";
 import Page from "@/layouts/page.astro";
 const title = `Impact | ${siteConfig.name}`;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: title,
+  description: siteConfig.description,
+  url: Astro.url.href,
+}
 ---
 
-<Page title={title}>
+<Page title={title} schema={schema}>
   <main id="main-content" role="main">
     <ImpactHero client:load />
     <ImpactEvents client:load />

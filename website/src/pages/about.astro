@@ -5,9 +5,22 @@ import AboutFocus from "@/components/about/focus";
 import siteConfig from "@/constants/site.json";
 import Page from "@/layouts/page.astro";
 const title = `About | ${siteConfig.name}`;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  url: Astro.url.href,
+  name: title,
+  description: siteConfig.description,
+  mainEntity: {
+    "@type": "Organization",
+    name: siteConfig.name,
+    logo: siteConfig.logo,
+    url: siteConfig.url,
+  },
+}
 ---
 
-<Page title={title}>
+<Page title={title} schema={schema}>
   <main id="main-content" role="main">
     <AboutHero client:load />
     <AboutFocus client:load />

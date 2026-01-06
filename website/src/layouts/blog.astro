@@ -17,6 +17,10 @@ import { Button } from "@/components/ui/button";
 import { BlogShare } from "@/components/share";
 import { formatDate } from "@/lib/date";
 import Page from "./page.astro";
+import type { CollectionEntry } from "astro:content";
+import { getBlogSchema } from "@/lib/schema";
+
+type Blog = CollectionEntry<"blogs">;
 
 interface Props {
   title: string;
@@ -33,6 +37,7 @@ interface Props {
     title: string;
     description: string;
   }[];
+  post: Blog;
 }
 
 const {
@@ -45,6 +50,7 @@ const {
   createdAt,
   lastUpdatedAt,
   articles,
+  post,
 } = Astro.props;
 const siteTitle = `${title} | ${siteConfig.name}`;
 
@@ -57,9 +63,10 @@ const categoryIcons: Record<string, React.ElementType> = {
 };
 
 const CategoryIcon = categoryIcons[category];
+const schema = getBlogSchema(post, Astro.url.href, siteConfig.name, siteConfig.logo);
 ---
 
-<Page title={title} description={description} keywords={keywords}>
+<Page title={siteTitle} description={description} keywords={keywords} schema={schema}>
   <main id="main-content" role="main">
     <section
       class="from-primary/5 to-background relative bg-gradient-to-b pt-32"
