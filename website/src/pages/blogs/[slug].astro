@@ -1,8 +1,9 @@
 ---
-import Blog from "@/layouts/blog.astro";
 import { getCollection, render } from "astro:content";
+import Blog from "@/layouts/blog.astro";
 import { getReadingTime } from "@/lib/read-time";
-import Link from '@/components/link/index.astro'
+import { getRelatedArticles } from "@/lib/related";
+import Link from "@/components/link.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blogs");
@@ -17,15 +18,16 @@ export async function getStaticPaths() {
           data: post.data,
           Content,
           readingTime: getReadingTime(post.body),
+          articles: getRelatedArticles(post, posts, 3),
         },
       };
     }),
   );
 }
 
-const { data, Content, readingTime } = Astro.props;
+const { data, Content, readingTime, articles } = Astro.props;
 ---
 
-<Blog {...data} time={readingTime.time}>
+<Blog {...data} time={readingTime.time} articles={articles}>
   <Content components={{ a: Link }} />
 </Blog>

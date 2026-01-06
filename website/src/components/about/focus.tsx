@@ -86,7 +86,7 @@ export default function AboutFocus() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-muted/30 border-border hover:border-primary/30 rounded-lg border p-6 transition-colors"
+              className="border-border hover:border-primary/30 rounded-lg border bg-white p-6 transition-colors"
             >
               <div className="bg-primary/10 mb-4 flex h-12 w-12 items-center justify-center rounded-full">
                 <area.icon

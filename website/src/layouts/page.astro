@@ -1,0 +1,94 @@
+---
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import siteConfig from "@/constants/site.json";
+import { ImageViewer } from "@/components/image-viewer";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+}
+
+const {
+  title = `${siteConfig.name} - ${siteConfig.tagline}`,
+  description = "Naaz Commercial Institute (NGO) provides vocational training, skill development, and community programs to empower individuals and create sustainable livelihoods.",
+  keywords = "Naaz Commercial Institute, NGO, vocational training, community development, skill development, training institute",
+} = Astro.props;
+const siteUrl = siteConfig.url;
+const logo = siteConfig.logo;
+const twitterHandle = siteConfig.social.twitter;
+---
+
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="author" content="Naaz Commercial Institute" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="robots" content="index, follow" />
+    <link rel="manifest" href="/site.manifest" />
+    <meta name="theme-color" content="#fffbf9" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={siteUrl} />
+
+    <!-- Favicon / icons (add actual files in /public if available) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Naaz Commercial Institute" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={logo} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={twitterHandle} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={logo} />
+
+    <!-- Structured data: Organization + WebSite -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "NGO",
+            name: "Naaz Commercial Institute",
+            url: siteUrl,
+            logo: logo,
+            description: description,
+          },
+          {
+            "@type": "WebSite",
+            url: siteUrl,
+            name: "Naaz Commercial Institute",
+          },
+        ],
+      })}
+    />
+  </head>
+
+  <body>
+    <Header client:load />
+    <slot />
+    <Footer client:load />
+    <ImageViewer client:load />
+  </body>
+</html>
