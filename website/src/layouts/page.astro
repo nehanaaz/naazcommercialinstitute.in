@@ -35,7 +35,7 @@ const {
         name: "Naaz Commercial Institute",
       },
     ],
-  }
+  },
 } = Astro.props;
 ---
 
@@ -81,10 +81,7 @@ const {
     <meta name="twitter:image" content={logo} />
 
     <!-- Structured data: Organization + WebSite -->
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify(schema)}
-    />
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   </head>
 
   <body>
