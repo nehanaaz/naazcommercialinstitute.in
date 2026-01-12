@@ -41,7 +41,7 @@ const schema = {
 };
 
 const Categories = new Set(posts.map((e) => e.data.category));
-const CategoriesList = Array.from(Categories.entries())
+const CategoriesList = Array.from(Categories.entries());
 ---
 
 <Page title={title} description={description} schema={schema}>
