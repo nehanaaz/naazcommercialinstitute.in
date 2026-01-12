@@ -1,0 +1,19 @@
+---
+import { BookOpen, Building2, GraduationCap, Heart, Users } from "lucide-react";
+
+interface Props {
+  category: string;
+  className?: string;
+}
+const categoryIcons: Record<string, React.ElementType> = {
+  "About Us": Building2,
+  Donation: Heart,
+  Programs: GraduationCap,
+  Education: BookOpen,
+  Partnership: Users,
+};
+const { category, className } = Astro.props;
+const CategoryIcon = categoryIcons[category] || BookOpen;
+---
+
+<CategoryIcon className={className} />

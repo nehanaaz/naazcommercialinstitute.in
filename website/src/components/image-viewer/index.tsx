@@ -1,4 +1,5 @@
 import {
+  useCallback,
   useEffect,
   useMemo,
   useState,
@@ -113,22 +114,70 @@ export function ImageViewer(_: ComponentProps<"div">) {
         if (!open) viewer.close();
       }}
     >
-      <DialogContent className="!h-svh !w-full !max-w-none rounded-none border-none bg-transparent shadow-none">
+      <DialogContent className="!h-svh !w-full !max-w-none rounded-none border-none bg-transparent text-white shadow-none">
         <DialogHeader className="sr-only">
           <DialogTitle>Image Viewer</DialogTitle>
         </DialogHeader>
-        <div className="m-auto h-[90vh] w-[90vw]">
+        <div role="img" className="m-auto h-[90vh] w-[90vw]">
           <Image
             src={album[currentIndex]?.src}
             className="h-full w-full object-contain"
+            loading="lazy"
           />
         </div>
+        <PreviousImage />
+        <NextImage />
         <div className="fixed right-0 bottom-0 left-0 flex items-center justify-center bg-linear-to-t from-black to-transparent px-12 py-8">
           <Thumbnails />
         </div>
       </DialogContent>
     </Dialog>
   );
+}
+
+function PreviousImage() {
+  const currentIndex = useImageViewer((s) => s.currentIndex);
+  const isClickable = useMemo(() => currentIndex - 1 > 0, [currentIndex])
+  const onClickHandler = useCallback(() => {
+    if (!isClickable) return;
+    viewer.open(currentIndex - 1);
+  }, [isClickable, currentIndex])
+  return (
+    <div
+      className={
+        cn("fixed left-0 top-0 bottom-0 z-10",
+          "flex items-center justify-center px-4 py-8 pointer-events-none",
+          "bg-linear-to-r from-black/20 to-transparent",
+          !isClickable ? 'opacity-50 cursor-not-allowed' : 'hover:from-black/60'
+        )
+      }
+    >
+      <button role="menuitem" className="p-4 pointer-events-auto" onClick={onClickHandler}><ChevronLeft /></button>
+    </div>
+  )
+}
+
+function NextImage() {
+  const album = useImageViewer((s) => s.album);
+  const currentIndex = useImageViewer((s) => s.currentIndex);
+  const isClickable = useMemo(() => currentIndex + 1 < album.length, [currentIndex, album])
+  const onClickHandler = useCallback(() => {
+    if (!isClickable) return;
+    viewer.open(currentIndex + 1);
+  }, [isClickable, currentIndex])
+  return (
+    <div
+      className={
+        cn("fixed right-0 top-0 bottom-0 z-10",
+          "flex items-center justify-center px-4 py-8 pointer-events-none",
+          "bg-linear-to-l from-black/20 to-transparent hover:from-black/60",
+          !isClickable ? 'opacity-50 cursor-not-allowed' : 'hover:from-black/60'
+        )
+      }
+    >
+      <button role="menuitem" className="p-4 pointer-events-auto" onClick={onClickHandler}><ChevronRight /></button>
+    </div>
+  )
 }
 
 function Thumbnails({ max }: { max?: number }) {
@@ -162,8 +211,9 @@ function Thumbnails({ max }: { max?: number }) {
   }, [album, startIndex, endIndex]);
 
   return (
-    <div className="flex gap-2 py-2 text-white">
+    <div role="menubar" className="flex gap-2 py-2">
       <button
+        role="menuitem"
         className={cn(
           "flex size-8 cursor-pointer items-center justify-center sm:size-16",
           isPreviousButtonDisabled && "cursor-not-allowed opacity-50",
@@ -181,6 +231,7 @@ function Thumbnails({ max }: { max?: number }) {
       {thumbnails.map((image, index) => (
         <button
           key={`${startIndex + index}`}
+          role="menuitem"
           className={cn(
             "size-8 cursor-pointer overflow-hidden rounded-lg sm:size-16",
             startIndex + index === currentIndex && "ring-secondary ring-2",
@@ -191,6 +242,7 @@ function Thumbnails({ max }: { max?: number }) {
         </button>
       ))}
       <button
+        role="menuitem"
         className={cn(
           "flex size-8 cursor-pointer items-center justify-center sm:size-16",
           isNextButtonDisabled && "cursor-not-allowed opacity-50",

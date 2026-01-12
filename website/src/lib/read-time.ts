@@ -1,4 +1,4 @@
-export function getReadingTime(text?: string, wordsPerMinute = 200) {
+export function getReadingTime(text?: string, wordsPerMinute = 160) {
   if (!text) return { minutes: 0, words: 0 };
 
   // Remove MDX/HTML artifacts

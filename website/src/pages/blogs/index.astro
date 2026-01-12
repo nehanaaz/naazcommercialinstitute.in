@@ -1,0 +1,98 @@
+---
+import { getCollection } from "astro:content";
+import BlogsHero from "@/components/blogs/hero";
+import siteConfig from "@/constants/site.json";
+import Page from "@/layouts/page.astro";
+import { ArrowRight } from "lucide-react";
+import Category from "@/components/category.astro";
+import { formatDate } from "@/lib/date";
+
+const posts = await getCollection("blogs");
+const sortedPosts = posts.sort((a, b) => new Date(b.data.createdAt).getTime() - new Date(a.data.createdAt).getTime());
+
+const title = `Blogs | ${siteConfig.name}`;
+const description = `Explore our comprehensive collection of blog posts on education, child welfare, women's empowerment, and social development in rural Bihar.`;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  url: Astro.url.href,
+  name: title,
+  description: description,
+  mainEntity: {
+    "@type": "Organization",
+    name: siteConfig.name,
+    logo: siteConfig.logo,
+    url: siteConfig.url,
+  },
+  blogPost: sortedPosts.map(post => ({
+    "@type": "BlogPosting",
+    headline: post.data.title,
+    description: post.data.description,
+    url: `${siteConfig.url}/blogs/${post.id}`,
+    datePublished: post.data.createdAt,
+    author: {
+      "@type": "Organization",
+      name: siteConfig.name,
+    },
+  })),
+};
+
+const Categories = new Set(posts.map((e) => e.data.category));
+---
+
+<Page title={title} description={description} schema={schema}>
+  <main id="main-content" role="main">
+    <BlogsHero client:load />
+    <section class="max-w-6xl m-auto px-4 sm:px-6 pb-16">
+      <div class="container mx-auto px-4 text-sm">
+        <div class="flex gap-4 flex-wrap items-center justify-center pb-12">
+          <a href={`#All`}>
+            <span class="bg-muted text-muted-foreground inline-flex items-center gap-2 rounded-full px-2.5 py-1 font-medium cursor-pointer">
+              All
+            </span>
+          </a>
+          {Categories.entries().map(([category]) => (
+            <a href={`#${category}`}>
+              <span class="bg-muted text-muted-foreground inline-flex items-center gap-2 rounded-full px-2.5 py-1 font-medium cursor-pointer">
+                <Category className="size-3.5" category={category} />
+                {category}
+              </span>
+            </a>
+          ))}
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {sortedPosts.map((post) => (
+            <article class="group bg-white rounded-xl p-6 border border-border hover:border-primary/30 transition-all">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="bg-muted text-muted-foreground mb-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium">
+                    <Category className="size-3" category={post.data.category} />
+                    {post.data.category}
+                  </span>
+                  <time class="text-muted-foreground text-xs font-light mb-2" datetime={formatDate(post.data.createdAt)}>
+                    {formatDate(post.data.createdAt)}
+                  </time>
+                </div>
+                <h3 class="text-foreground group-hover:text-primary mb-2 line-clamp-2 font-medium transition-colors">
+                  <a href={`/blogs/${post.id}`} class="block">
+                    {post.data.title}
+                  </a>
+                </h3>
+                <p class="text-muted-foreground line-clamp-2 text-sm">
+                  {post.data.description}
+                </p>
+                <a 
+                  href={`/blogs/${post.id}`} 
+                  class="inline-flex gap-2 hover:gap-4 transition-all duration-300 text-sm mt-2 items-center text-primary hover:text-primary/90 font-medium"
+                >
+                  Read More
+                  <ArrowRight className="size-3.5" />
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</Page>

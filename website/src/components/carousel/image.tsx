@@ -160,7 +160,6 @@ function ProgressBar({
         "absolute bottom-4 left-1/2 z-100 flex -translate-x-1/2 items-center gap-1",
         className,
       )}
-      role="carousel"
       {...props}
     >
       {Array.from({ length: totalImages }).map((_, index) => (
@@ -182,7 +181,6 @@ function ProgressItem({
         "h-1.5 overflow-hidden rounded-lg bg-white/20 opacity-60 transition-all duration-300 group-hover:opacity-100",
         className,
       )}
-      role="progressbar"
       {...props}
     >
       <div
