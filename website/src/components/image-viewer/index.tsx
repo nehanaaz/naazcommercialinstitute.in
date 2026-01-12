@@ -137,47 +137,60 @@ export function ImageViewer(_: ComponentProps<"div">) {
 
 function PreviousImage() {
   const currentIndex = useImageViewer((s) => s.currentIndex);
-  const isClickable = useMemo(() => currentIndex - 1 > 0, [currentIndex])
+  const isClickable = useMemo(() => currentIndex - 1 > 0, [currentIndex]);
   const onClickHandler = useCallback(() => {
     if (!isClickable) return;
     viewer.open(currentIndex - 1);
-  }, [isClickable, currentIndex])
+  }, [isClickable, currentIndex]);
   return (
     <div
-      className={
-        cn("fixed left-0 top-0 bottom-0 z-10",
-          "flex items-center justify-center px-4 py-8 pointer-events-none",
-          "bg-linear-to-r from-black/20 to-transparent",
-          !isClickable ? 'opacity-50 cursor-not-allowed' : 'hover:from-black/60'
-        )
-      }
+      className={cn(
+        "fixed top-0 bottom-0 left-0 z-10",
+        "pointer-events-none flex items-center justify-center px-4 py-8",
+        "bg-linear-to-r from-black/20 to-transparent",
+        !isClickable ? "cursor-not-allowed opacity-50" : "hover:from-black/60",
+      )}
     >
-      <button role="menuitem" className="p-4 pointer-events-auto" onClick={onClickHandler}><ChevronLeft /></button>
+      <button
+        role="menuitem"
+        className="pointer-events-auto p-4"
+        onClick={onClickHandler}
+      >
+        <ChevronLeft />
+      </button>
     </div>
-  )
+  );
 }
 
 function NextImage() {
   const album = useImageViewer((s) => s.album);
   const currentIndex = useImageViewer((s) => s.currentIndex);
-  const isClickable = useMemo(() => currentIndex + 1 < album.length, [currentIndex, album])
+  const isClickable = useMemo(
+    () => currentIndex + 1 < album.length,
+    [currentIndex, album],
+  );
   const onClickHandler = useCallback(() => {
     if (!isClickable) return;
     viewer.open(currentIndex + 1);
-  }, [isClickable, currentIndex])
+  }, [isClickable, currentIndex]);
   return (
     <div
-      className={
-        cn("fixed right-0 top-0 bottom-0 z-10",
-          "flex items-center justify-center px-4 py-8 pointer-events-none",
-          "bg-linear-to-l from-black/20 to-transparent hover:from-black/60",
-          !isClickable ? 'opacity-50 cursor-not-allowed' : 'hover:from-black/60'
-        )
-      }
+      className={cn(
+        "fixed top-0 right-0 bottom-0 z-10",
+        "pointer-events-none flex items-center justify-center px-4 py-8",
+        "bg-linear-to-l from-black/20 to-transparent hover:from-black/60",
+        !isClickable ? "cursor-not-allowed opacity-50" : "hover:from-black/60",
+      )}
     >
-      <button role="menuitem" className="p-4 pointer-events-auto" onClick={onClickHandler}><ChevronRight /></button>
+      <button
+        role="menuitem"
+        className="pointer-events-auto p-4"
+        onClick={onClickHandler}
+      >
+        <ChevronRight />
+      </button>
     </div>
-  )
+  );
 }
 
 function Thumbnails({ max }: { max?: number }) {

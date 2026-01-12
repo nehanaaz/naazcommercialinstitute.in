@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function BlogsHero() {
   return (
-    <section className="from-primary/5 via-background to-background relative overflow-hidden bg-gradient-to-br pt-20 md:pt-28 pb-8 md:pb-12">
+    <section className="from-primary/5 via-background to-background relative overflow-hidden bg-gradient-to-br pt-20 pb-8 md:pt-28 md:pb-12">
       <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -18,7 +18,9 @@ export default function BlogsHero() {
             Learn About Our Work
           </h1>
           <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-            Discover how Naaz Commercial Institute is transforming lives through education, skill development, and community empowerment in rural Bihar.
+            Discover how Naaz Commercial Institute is transforming lives through
+            education, skill development, and community empowerment in rural
+            Bihar.
           </p>
         </motion.div>
       </div>
