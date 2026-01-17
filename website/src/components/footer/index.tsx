@@ -17,7 +17,7 @@ export default function Footer() {
             <div className="mb-4 flex items-center gap-3">
               <Image
                 src={siteConfig.logo || "/placeholder.svg"}
-                alt=""
+                alt={siteConfig.name}
                 width={40}
                 height={40}
                 className="rounded-xl"

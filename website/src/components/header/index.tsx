@@ -57,7 +57,7 @@ export default function Header() {
             >
               <Image
                 src={siteConfig.logo || "/placeholder.svg"}
-                alt=""
+                alt={siteConfig.name}
                 width={48}
                 height={48}
                 className="rounded-xl"
