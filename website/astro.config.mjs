@@ -9,6 +9,7 @@ import sitemap from "@astrojs/sitemap";
 import partytown from "@astrojs/partytown";
 
 import mdx from "@astrojs/mdx";
+import { optimizeImages } from "./scripts/image.optimizer.js";
 
 const environment = process.env.NODE_ENV || "development";
 const { SITE } = loadEnv(
@@ -23,7 +24,7 @@ export default defineConfig({
   outDir: "../dist",
   site: SITE,
   trailingSlash: "ignore",
-  integrations: [react(), sitemap(), partytown(), mdx()],
+  integrations: [react(), sitemap(), partytown(), mdx(), optimizeImages()],
 
   vite: {
     plugins: [tailwindcss()],

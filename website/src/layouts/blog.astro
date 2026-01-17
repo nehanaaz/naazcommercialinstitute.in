@@ -20,6 +20,8 @@ import Page from "./page.astro";
 import type { CollectionEntry } from "astro:content";
 import { getBlogSchema } from "@/lib/schema";
 import Category from "@/components/category.astro";
+import { getRelatedBlogs } from "@/lib/related";
+import { getCollection } from "astro:content";
 
 type Blog = CollectionEntry<"blogs">;
 
@@ -47,7 +49,6 @@ const {
   keywords = "Naaz Commercial Institute, NGO, vocational training, community development, skill development, training institute",
   time,
   category = "Education",
-  related,
   createdAt,
   lastUpdatedAt,
   articles,
@@ -60,6 +61,8 @@ const schema = getBlogSchema(
   siteConfig.name,
   siteConfig.logo,
 );
+const blogs = await getCollection("blogs");
+const related = getRelatedBlogs(Astro.props.related, blogs);
 ---
 
 <Page
@@ -122,10 +125,13 @@ const schema = getBlogSchema(
             <span class="text-muted-foreground mr-2 text-sm">
               Related Topics:
             </span>
-            {related?.map((keyword) => (
-              <span class="bg-muted text-muted-foreground rounded-full px-3 py-1 text-xs">
-                {keyword}
-              </span>
+            {related?.map((r) => (
+              <a
+                href={r.link}
+                class="bg-muted text-muted-foreground rounded-full px-3 py-1 text-xs"
+              >
+                {r.title}
+              </a>
             ))}
           </div>
         )
